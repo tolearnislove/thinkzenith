@@ -3,122 +3,217 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THINKZENITH | ORBIX PORTAL</title>
+    <title>THINKZENITH | Premium Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        :root { --neon: #00f3ff; --gold: #ffd700; --bg: #050505; --glass: rgba(10, 20, 30, 0.8); }
-        body { background: var(--bg); color: white; font-family: 'Courier New', monospace; margin: 0; padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; background-image: radial-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px); background-size: 20px 20px; }
-        
-        .header { text-align: center; margin-top: 30px; animation: fadeIn 2s; }
-        h1 { font-size: 2rem; color: var(--neon); text-shadow: 0 0 15px var(--neon); margin-bottom: 5px; }
-        .subtitle { color: #888; letter-spacing: 2px; font-size: 0.8rem; }
-        
-        .stats { display: flex; gap: 10px; margin: 20px 0; font-size: 0.75rem; background: rgba(0,0,0,0.6); padding: 10px; border: 1px solid #333; border-radius: 5px; }
-        .live { color: #0f0; animation: blink 1.5s infinite; }
-        @keyframes blink { 50% { opacity: 0.3; } }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        :root {
+            --primary: #ffffff;
+            --accent: #0088cc; /* Telegram Blue */
+            --bg: #0f0f0f;
+            --surface: #1a1a1a;
+            --text-grey: #888;
+        }
 
-        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; width: 100%; max-width: 400px; margin-bottom: 40px; }
-        .card { background: var(--glass); border: 1px solid rgba(0, 243, 255, 0.2); padding: 20px; border-radius: 10px; text-decoration: none; color: white; text-align: center; transition: 0.3s; position: relative; overflow: hidden; }
-        .card:hover { border-color: var(--neon); box-shadow: 0 0 20px rgba(0, 243, 255, 0.2); transform: scale(1.02); }
-        .card h3 { margin: 5px 0; color: var(--neon); font-size: 1.1rem; }
-        .card p { font-size: 0.7rem; color: #aaa; margin: 0; }
-        .icon { font-size: 1.5rem; margin-bottom: 5px; }
-        
-        /* Escrow Special Card */
-        .escrow { border-color: var(--gold); background: rgba(255, 215, 0, 0.05); }
-        .escrow h3 { color: var(--gold); }
-        .escrow:hover { border-color: var(--gold); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+        body {
+            background-color: var(--bg);
+            color: var(--primary);
+            font-family: 'Poppins', sans-serif; /* The Good Font */
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            line-height: 1.6;
+        }
 
-        /* Terminal */
-        .terminal { width: 100%; max-width: 500px; background: #000; border: 1px solid #333; border-radius: 5px; padding: 10px; font-size: 0.75rem; color: #ccc; margin-top: auto; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
-        .term-header { border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px; color: #666; display: flex; justify-content: space-between; }
-        .line { margin-bottom: 5px; }
-        .cmd { color: var(--neon); }
-        .response { color: #aaa; margin-left: 10px; }
-        .input-line { display: flex; border-top: 1px solid #333; padding-top: 5px; margin-top: 10px; }
-        input { background: none; border: none; color: white; font-family: inherit; flex: 1; outline: none; margin-left: 5px; }
-        .btns { display: flex; gap: 5px; margin-top: 10px; flex-wrap: wrap; }
-        button { background: #111; border: 1px solid #444; color: #888; padding: 5px 10px; cursor: pointer; border-radius: 3px; font-family: inherit; font-size: 0.7rem; }
-        button:hover { color: var(--neon); border-color: var(--neon); }
+        /* --- CONTACT BAR --- */
+        .contact-bar {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .contact-pill {
+            background: var(--surface);
+            padding: 8px 16px;
+            border-radius: 50px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #333;
+            text-decoration: none;
+            color: white;
+            transition: 0.3s;
+        }
+        .contact-pill:hover { border-color: var(--accent); }
+        .dot { width: 8px; height: 8px; border-radius: 50%; }
+        .green { background: #00ff88; box-shadow: 0 0 10px #00ff88; }
+        .blue { background: #0088cc; }
+
+        /* --- HERO SECTION --- */
+        .hero { text-align: center; max-width: 500px; margin-bottom: 40px; }
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800; /* Extra Bold */
+            margin: 0 0 10px 0;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #888);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bio-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            color: #ccc;
+            border: 1px solid #333;
+        }
+        .highlight { color: var(--accent); font-weight: 600; }
+
+        /* --- BUTTON GRID --- */
+        .grid {
+            display: grid;
+            gap: 15px;
+            width: 100%;
+            max-width: 500px;
+            margin-bottom: 50px;
+        }
+        .btn {
+            background: var(--surface);
+            padding: 20px;
+            border-radius: 16px;
+            text-decoration: none;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-weight: 600;
+            transition: transform 0.2s, background 0.2s;
+            border: 1px solid #2a2a2a;
+        }
+        .btn:hover {
+            background: #252525;
+            transform: scale(1.02);
+            border-color: #444;
+        }
+        .btn-icon { font-size: 1.5rem; }
+        
+        /* Special Escrow Button */
+        .escrow-btn {
+            background: linear-gradient(45deg, #0088cc, #005580);
+            border: none;
+        }
+        .escrow-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+        /* --- FAQ SECTION --- */
+        .faq-section {
+            width: 100%;
+            max-width: 500px;
+        }
+        .faq-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; color: #555; text-transform: uppercase; letter-spacing: 2px; }
+        
+        details {
+            background: var(--surface);
+            margin-bottom: 10px;
+            border-radius: 10px;
+            border: 1px solid #333;
+            overflow: hidden;
+        }
+        summary {
+            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        summary::after { content: '+'; font-size: 1.2rem; color: var(--text-grey); }
+        details[open] summary::after { content: '-'; }
+        .answer {
+            padding: 0 20px 20px 20px;
+            font-size: 0.85rem;
+            color: #aaa;
+            line-height: 1.6;
+            border-top: 1px solid #333;
+            margin-top: 10px;
+            padding-top: 10px;
+        }
+
     </style>
 </head>
 <body>
 
-    <div class="header">
-        <h1>THINKZENITH.TON</h1>
-        <div class="subtitle">ORBIX PORTAL // SYSTEM ONLINE</div>
+    <div class="contact-bar">
+        <a href="https://t.me/im_techy" class="contact-pill">
+            <span class="dot green"></span> Main: @im_techy
+        </a>
+        <a href="https://t.me/im_orbix" class="contact-pill">
+            <span class="dot blue"></span> Support: @im_orbix
+        </a>
     </div>
 
-    <div class="stats">
-        <span>EXPERIENCE: <b>2+ YEARS</b></span>
-        <span>•</span>
-        <span>TRUST: <b>100%</b></span>
-        <span>•</span>
-        <span><span class="live">●</span> VOUCHES: <b>150+</b></span>
+    <div class="hero">
+        <h1>THINKZENITH</h1>
+        <div class="bio-box">
+            With <span class="highlight">2+ Years</span> of experience in the TON Ecosystem, I specialize in premium telegram NFT gifts , username acquisitions and NFT trading. 
+            <br><br>
+            Owner of <b>Orbix Portal</b>. We provide a 100% Secure Environment for your digital asset deals.
+        </div>
     </div>
 
     <div class="grid">
-        <a href="https://t.me/orbixportal" class="card">
-            <div class="icon">🌐</div>
-            <h3>MAIN PORTAL</h3>
-            <p>News & Updates</p>
+        <a href="https://t.me/Orbixmrkt" class="btn">
+            <span>🌐 Orbix Portal (Main)</span>
+            <span class="btn-icon">→</span>
         </a>
-        <a href="https://t.me/vouches" class="card">
-            <div class="icon">⭐</div>
-            <h3>THE VAULT</h3>
-            <p>Verified Vouches</p>
+        <a href="https://t.me/orbiXTrustline" class="btn">
+            <span>⭐ Verified Vouches</span>
+            <span class="btn-icon">↗</span>
         </a>
-        <a href="https://t.me/market" class="card">
-            <div class="icon">📊</div>
-            <h3>MARKET</h3>
-            <p>Buy / Sell Assets</p>
+        <a href="https://t.me/glory_worldd" class="btn">
+            <span>📊 Buy / Sell Market</span>
+            <span class="btn-icon">↗</span>
         </a>
-        <a href="https://t.me/escrow" class="card escrow">
-            <div class="icon">🛡️</div>
-            <h3>SECURE ESCROW</h3>
-            <p>100% Safe Middleman</p>
+        <a href="https://t.me/GloryXworld" class="btn escrow-btn">
+            <span>🛡️ SECURE ESCROW SERVICE</span>
+            <span class="btn-icon">🔒</span>
         </a>
     </div>
 
-    <div class="terminal">
-        <div class="term-header"><span>TERMINAL_V2.0</span><span>USER: GUEST</span></div>
-        <div id="output">
-            <div class="line"><span class="cmd">root@orbix:~#</span> system initialized...</div>
-            <div class="line"><span class="cmd">root@orbix:~#</span> loaded escrow module.</div>
-            <div class="line"><span class="cmd">root@orbix:~#</span> welcome. type 'help'.</div>
-        </div>
-        <div class="input-line">
-            <span class="cmd">root@orbix:~#</span>
-            <input type="text" id="cmdInput" placeholder="Type command..." autocomplete="off">
-        </div>
-        <div class="btns">
-            <button onclick="run('help')">/help</button>
-            <button onclick="run('fees')">/fees</button>
-            <button onclick="run('owner')">/owner</button>
-        </div>
+    <div class="faq-section">
+        <div class="faq-title">Frequently Asked Questions</div>
+
+        <details>
+            <summary>What are Telegram Usernames?</summary>
+            <div class="answer">
+                Telegram usernames are premium digital assets minted as NFTs on the TON Blockchain. They can be bought, sold, and owned permanently in your wallet (like Tonkeeper).
+            </div>
+        </details>
+
+        <details>
+            <summary>What are NFTs?</summary>
+            <div class="answer">
+                NFTs (Non-Fungible Tokens) are unique digital items. In our context, we deal with Telegram Numbers, Usernames, and art that have real market value.
+            </div>
+        </details>
+
+        <details>
+            <summary>How is trading done safely?</summary>
+            <div class="answer">
+                We use a "Middleman" or Escrow service. The buyer sends funds to us, the seller transfers the item to us. Once both are verified, we swap them. This ensures 0% scams.
+            </div>
+        </details>
+
+        <details>
+            <summary>What are your fees?</summary>
+            <div class="answer">
+                Our fees are standard for the ecosystem. Please check the "Fees" pinned message in our Escrow group or DM @im_techy for a quote on large deals.
+            </div>
+        </details>
     </div>
 
-    <script>
-        const output = document.getElementById('output');
-        const input = document.getElementById('cmdInput');
-
-        input.addEventListener('keypress', (e) => { if(e.key === 'Enter') { run(input.value); input.value = ''; } });
-
-        function run(cmd) {
-            cmd = cmd.toLowerCase().replace('/','').trim();
-            output.innerHTML += `<div class="line"><span class="cmd">root@orbix:~#</span> ${cmd}</div>`;
-            
-            let res = "Error: Unknown command.";
-            if(cmd == 'help') res = "COMMANDS: /fees, /owner, /status, /vouches";
-            if(cmd == 'fees') res = "FEES: Under $100 = $5 | Over $100 = 5%";
-            if(cmd == 'owner') res = "OWNER: Arshaan Baig | @im_orbix";
-            if(cmd == 'status') res = "ESCROW: [OPEN] | MARKET: [ACTIVE]";
-            if(cmd == 'vouches') res = "TOTAL: 152+ Verified Deals";
-
-            output.innerHTML += `<div class="line response">>> ${res}</div>`;
-            output.scrollTop = output.scrollHeight;
-        }
-    </script>
 </body>
 </html>
-  
