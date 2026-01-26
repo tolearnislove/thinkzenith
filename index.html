@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THINKZENITH | ORBIX PORTAL</title>
+    <style>
+        :root { --neon: #00f3ff; --gold: #ffd700; --bg: #050505; --glass: rgba(10, 20, 30, 0.8); }
+        body { background: var(--bg); color: white; font-family: 'Courier New', monospace; margin: 0; padding: 20px; min-height: 100vh; display: flex; flex-direction: column; align-items: center; background-image: radial-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px); background-size: 20px 20px; }
+        
+        .header { text-align: center; margin-top: 30px; animation: fadeIn 2s; }
+        h1 { font-size: 2rem; color: var(--neon); text-shadow: 0 0 15px var(--neon); margin-bottom: 5px; }
+        .subtitle { color: #888; letter-spacing: 2px; font-size: 0.8rem; }
+        
+        .stats { display: flex; gap: 10px; margin: 20px 0; font-size: 0.75rem; background: rgba(0,0,0,0.6); padding: 10px; border: 1px solid #333; border-radius: 5px; }
+        .live { color: #0f0; animation: blink 1.5s infinite; }
+        @keyframes blink { 50% { opacity: 0.3; } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+
+        .grid { display: grid; grid-template-columns: 1fr; gap: 15px; width: 100%; max-width: 400px; margin-bottom: 40px; }
+        .card { background: var(--glass); border: 1px solid rgba(0, 243, 255, 0.2); padding: 20px; border-radius: 10px; text-decoration: none; color: white; text-align: center; transition: 0.3s; position: relative; overflow: hidden; }
+        .card:hover { border-color: var(--neon); box-shadow: 0 0 20px rgba(0, 243, 255, 0.2); transform: scale(1.02); }
+        .card h3 { margin: 5px 0; color: var(--neon); font-size: 1.1rem; }
+        .card p { font-size: 0.7rem; color: #aaa; margin: 0; }
+        .icon { font-size: 1.5rem; margin-bottom: 5px; }
+        
+        /* Escrow Special Card */
+        .escrow { border-color: var(--gold); background: rgba(255, 215, 0, 0.05); }
+        .escrow h3 { color: var(--gold); }
+        .escrow:hover { border-color: var(--gold); box-shadow: 0 0 20px rgba(255, 215, 0, 0.3); }
+
+        /* Terminal */
+        .terminal { width: 100%; max-width: 500px; background: #000; border: 1px solid #333; border-radius: 5px; padding: 10px; font-size: 0.75rem; color: #ccc; margin-top: auto; box-shadow: 0 0 30px rgba(0,0,0,0.5); }
+        .term-header { border-bottom: 1px solid #333; padding-bottom: 5px; margin-bottom: 10px; color: #666; display: flex; justify-content: space-between; }
+        .line { margin-bottom: 5px; }
+        .cmd { color: var(--neon); }
+        .response { color: #aaa; margin-left: 10px; }
+        .input-line { display: flex; border-top: 1px solid #333; padding-top: 5px; margin-top: 10px; }
+        input { background: none; border: none; color: white; font-family: inherit; flex: 1; outline: none; margin-left: 5px; }
+        .btns { display: flex; gap: 5px; margin-top: 10px; flex-wrap: wrap; }
+        button { background: #111; border: 1px solid #444; color: #888; padding: 5px 10px; cursor: pointer; border-radius: 3px; font-family: inherit; font-size: 0.7rem; }
+        button:hover { color: var(--neon); border-color: var(--neon); }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>THINKZENITH.TON</h1>
+        <div class="subtitle">ORBIX PORTAL // SYSTEM ONLINE</div>
+    </div>
+
+    <div class="stats">
+        <span>EXPERIENCE: <b>2+ YEARS</b></span>
+        <span>•</span>
+        <span>TRUST: <b>100%</b></span>
+        <span>•</span>
+        <span><span class="live">●</span> VOUCHES: <b>150+</b></span>
+    </div>
+
+    <div class="grid">
+        <a href="https://t.me/orbixportal" class="card">
+            <div class="icon">🌐</div>
+            <h3>MAIN PORTAL</h3>
+            <p>News & Updates</p>
+        </a>
+        <a href="https://t.me/vouches" class="card">
+            <div class="icon">⭐</div>
+            <h3>THE VAULT</h3>
+            <p>Verified Vouches</p>
+        </a>
+        <a href="https://t.me/market" class="card">
+            <div class="icon">📊</div>
+            <h3>MARKET</h3>
+            <p>Buy / Sell Assets</p>
+        </a>
+        <a href="https://t.me/escrow" class="card escrow">
+            <div class="icon">🛡️</div>
+            <h3>SECURE ESCROW</h3>
+            <p>100% Safe Middleman</p>
+        </a>
+    </div>
+
+    <div class="terminal">
+        <div class="term-header"><span>TERMINAL_V2.0</span><span>USER: GUEST</span></div>
+        <div id="output">
+            <div class="line"><span class="cmd">root@orbix:~#</span> system initialized...</div>
+            <div class="line"><span class="cmd">root@orbix:~#</span> loaded escrow module.</div>
+            <div class="line"><span class="cmd">root@orbix:~#</span> welcome. type 'help'.</div>
+        </div>
+        <div class="input-line">
+            <span class="cmd">root@orbix:~#</span>
+            <input type="text" id="cmdInput" placeholder="Type command..." autocomplete="off">
+        </div>
+        <div class="btns">
+            <button onclick="run('help')">/help</button>
+            <button onclick="run('fees')">/fees</button>
+            <button onclick="run('owner')">/owner</button>
+        </div>
+    </div>
+
+    <script>
+        const output = document.getElementById('output');
+        const input = document.getElementById('cmdInput');
+
+        input.addEventListener('keypress', (e) => { if(e.key === 'Enter') { run(input.value); input.value = ''; } });
+
+        function run(cmd) {
+            cmd = cmd.toLowerCase().replace('/','').trim();
+            output.innerHTML += `<div class="line"><span class="cmd">root@orbix:~#</span> ${cmd}</div>`;
+            
+            let res = "Error: Unknown command.";
+            if(cmd == 'help') res = "COMMANDS: /fees, /owner, /status, /vouches";
+            if(cmd == 'fees') res = "FEES: Under $100 = $5 | Over $100 = 5%";
+            if(cmd == 'owner') res = "OWNER: Arshaan Baig | @im_orbix";
+            if(cmd == 'status') res = "ESCROW: [OPEN] | MARKET: [ACTIVE]";
+            if(cmd == 'vouches') res = "TOTAL: 152+ Verified Deals";
+
+            output.innerHTML += `<div class="line response">>> ${res}</div>`;
+            output.scrollTop = output.scrollHeight;
+        }
+    </script>
+</body>
+</html>
+  
