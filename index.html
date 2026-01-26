@@ -9,21 +9,27 @@
         :root {
             --primary: #ffffff;
             --accent: #0088cc; /* Telegram Blue */
-            --bg: #0f0f0f;
-            --surface: #1a1a1a;
-            --text-grey: #888;
+            --bg: #050505;
+            --surface: rgba(255, 255, 255, 0.03); /* More transparent for glass effect */
         }
 
         body {
+            /* THE PREMIUM BACKGROUND */
             background-color: var(--bg);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(0, 136, 204, 0.25) 0%, transparent 60%),
+                radial-gradient(circle at 100% 0%, rgba(0, 255, 136, 0.05) 0%, transparent 40%);
+            background-attachment: fixed; /* Keeps bg still when scrolling */
+            
             color: var(--primary);
-            font-family: 'Poppins', sans-serif; /* The Good Font */
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
             line-height: 1.6;
+            min-height: 100vh;
         }
 
         /* --- CONTACT BAR --- */
@@ -33,42 +39,47 @@
             margin-bottom: 30px;
             font-size: 0.8rem;
             font-weight: 600;
+            z-index: 10;
         }
         .contact-pill {
-            background: var(--surface);
+            background: rgba(0, 0, 0, 0.3); /* Darker pill */
             padding: 8px 16px;
             border-radius: 50px;
             display: flex;
             align-items: center;
             gap: 8px;
-            border: 1px solid #333;
+            border: 1px solid rgba(255,255,255,0.1);
             text-decoration: none;
             color: white;
+            backdrop-filter: blur(10px);
             transition: 0.3s;
         }
-        .contact-pill:hover { border-color: var(--accent); }
+        .contact-pill:hover { border-color: var(--accent); background: rgba(0, 136, 204, 0.1); }
         .dot { width: 8px; height: 8px; border-radius: 50%; }
         .green { background: #00ff88; box-shadow: 0 0 10px #00ff88; }
-        .blue { background: #0088cc; }
+        .blue { background: #0088cc; box-shadow: 0 0 10px #0088cc; }
 
         /* --- HERO SECTION --- */
-        .hero { text-align: center; max-width: 500px; margin-bottom: 40px; }
+        .hero { text-align: center; max-width: 500px; margin-bottom: 40px; z-index: 10; }
         h1 {
             font-size: 2.8rem;
-            font-weight: 800; /* Extra Bold */
+            font-weight: 800;
             margin: 0 0 10px 0;
             letter-spacing: -1px;
-            background: linear-gradient(to right, #fff, #888);
+            /* Gradient Text */
+            background: linear-gradient(to bottom, #fff, #aaa);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .bio-box {
-            background: rgba(255, 255, 255, 0.05);
+            background: var(--surface);
             padding: 20px;
             border-radius: 15px;
             font-size: 0.9rem;
             color: #ccc;
-            border: 1px solid #333;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
         }
         .highlight { color: var(--accent); font-weight: 600; }
 
@@ -79,6 +90,7 @@
             width: 100%;
             max-width: 500px;
             margin-bottom: 50px;
+            z-index: 10;
         }
         .btn {
             background: var(--surface);
@@ -91,35 +103,34 @@
             justify-content: space-between;
             font-weight: 600;
             transition: transform 0.2s, background 0.2s;
-            border: 1px solid #2a2a2a;
+            border: 1px solid rgba(255,255,255,0.05);
+            backdrop-filter: blur(5px);
         }
         .btn:hover {
-            background: #252525;
+            background: rgba(255,255,255,0.08);
             transform: scale(1.02);
-            border-color: #444;
+            border-color: rgba(255,255,255,0.2);
         }
-        .btn-icon { font-size: 1.5rem; }
         
         /* Special Escrow Button */
         .escrow-btn {
-            background: linear-gradient(45deg, #0088cc, #005580);
-            border: none;
+            background: linear-gradient(135deg, rgba(0,136,204,0.8), rgba(0,85,128,0.8));
+            border: 1px solid rgba(0,136,204,0.5);
+            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.2);
         }
-        .escrow-btn:hover { transform: scale(1.02); filter: brightness(1.1); }
+        .escrow-btn:hover { transform: scale(1.02); filter: brightness(1.2); }
 
         /* --- FAQ SECTION --- */
-        .faq-section {
-            width: 100%;
-            max-width: 500px;
-        }
-        .faq-title { font-size: 1.2rem; font-weight: 800; margin-bottom: 20px; color: #555; text-transform: uppercase; letter-spacing: 2px; }
+        .faq-section { width: 100%; max-width: 500px; z-index: 10; }
+        .faq-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 20px; color: #666; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
         
         details {
             background: var(--surface);
             margin-bottom: 10px;
             border-radius: 10px;
-            border: 1px solid #333;
+            border: 1px solid rgba(255,255,255,0.05);
             overflow: hidden;
+            backdrop-filter: blur(5px);
         }
         summary {
             padding: 15px 20px;
@@ -129,17 +140,26 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            font-size: 0.9rem;
         }
-        summary::after { content: '+'; font-size: 1.2rem; color: var(--text-grey); }
+        summary::after { content: '+'; font-size: 1.2rem; color: #666; }
         details[open] summary::after { content: '-'; }
         .answer {
             padding: 0 20px 20px 20px;
             font-size: 0.85rem;
             color: #aaa;
             line-height: 1.6;
-            border-top: 1px solid #333;
+            border-top: 1px solid rgba(255,255,255,0.05);
             margin-top: 10px;
             padding-top: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 50px;
+            font-size: 0.7rem;
+            color: #444;
+            text-align: center;
         }
 
     </style>
@@ -158,7 +178,7 @@
     <div class="hero">
         <h1>THINKZENITH</h1>
         <div class="bio-box">
-            With <span class="highlight">2+ Years</span> of experience in the TON Ecosystem, I specialize in premium telegram NFT gifts , username acquisitions and NFT trading. 
+            With <span class="highlight">2+ Years</span> of experience in the TON Ecosystem, I specialize in premium username acquisitions and NFT trading. 
             <br><br>
             Owner of <b>Orbix Portal</b>. We provide a 100% Secure Environment for your digital asset deals.
         </div>
@@ -167,19 +187,19 @@
     <div class="grid">
         <a href="https://t.me/Orbixmrkt" class="btn">
             <span>🌐 Orbix Portal (Main)</span>
-            <span class="btn-icon">→</span>
+            <span>→</span>
         </a>
         <a href="https://t.me/orbiXTrustline" class="btn">
             <span>⭐ Verified Vouches</span>
-            <span class="btn-icon">↗</span>
+            <span>↗</span>
         </a>
         <a href="https://t.me/glory_worldd" class="btn">
             <span>📊 Buy / Sell Market</span>
-            <span class="btn-icon">↗</span>
+            <span>↗</span>
         </a>
         <a href="https://t.me/GloryXworld" class="btn escrow-btn">
             <span>🛡️ SECURE ESCROW SERVICE</span>
-            <span class="btn-icon">🔒</span>
+            <span>🔒</span>
         </a>
     </div>
 
@@ -196,7 +216,7 @@
         <details>
             <summary>What are NFTs?</summary>
             <div class="answer">
-                NFTs (Non-Fungible Tokens) are unique digital items. In our context, we deal with Telegram Numbers, Usernames, and art that have real market value.
+                NFTs (Non-Fungible Tokens) are unique digital items. In our context, we deal with Telegram NFT gifts , Usernames, and art that have real market value.
             </div>
         </details>
 
@@ -213,6 +233,10 @@
                 Our fees are standard for the ecosystem. Please check the "Fees" pinned message in our Escrow group or DM @im_techy for a quote on large deals.
             </div>
         </details>
+    </div>
+    
+    <div class="footer">
+        © 2024 THINKZENITH.TON • SECURE PORTAL
     </div>
 
 </body>
