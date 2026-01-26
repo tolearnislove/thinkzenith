@@ -8,18 +8,20 @@
     <style>
         :root {
             --primary: #ffffff;
-            --accent: #0088cc; /* Telegram Blue */
-            --bg: #050505;
-            --surface: rgba(255, 255, 255, 0.03); /* More transparent for glass effect */
+            --accent: #0088cc;
+            --glass-bg: rgba(0, 0, 0, 0.75); /* Darker glass for better reading on blue bg */
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-blur: 20px;
         }
 
         body {
-            /* THE PREMIUM BACKGROUND */
-            background-color: var(--bg);
-            background-image: 
-                radial-gradient(circle at 50% 0%, rgba(0, 136, 204, 0.25) 0%, transparent 60%),
-                radial-gradient(circle at 100% 0%, rgba(0, 255, 136, 0.05) 0%, transparent 40%);
-            background-attachment: fixed; /* Keeps bg still when scrolling */
+            /* OPTION 2: QUANTUM NETWORK BACKGROUND */
+            background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2560&auto=format&fit=crop');
+            
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-color: #050505;
             
             color: var(--primary);
             font-family: 'Poppins', sans-serif;
@@ -32,7 +34,37 @@
             min-height: 100vh;
         }
 
-        /* --- CONTACT BAR --- */
+        /* --- ANIMATIONS --- */
+        
+        /* 1. Shimmer Text */
+        @keyframes shine {
+            0% { background-position: -200%; }
+            100% { background-position: 200%; }
+        }
+
+        /* 2. Floating Buttons */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* 3. Pulse Dot */
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0.4); }
+            70% { box-shadow: 0 0 0 6px rgba(0, 255, 136, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 255, 136, 0); }
+        }
+        
+        /* 4. Escrow Heartbeat (Special Attention) */
+        @keyframes heartbeat {
+            0% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.4); }
+            50% { box-shadow: 0 0 20px 5px rgba(0, 136, 204, 0.2); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 136, 204, 0.4); }
+        }
+
+        /* --- STYLES --- */
+
         .contact-bar {
             display: flex;
             gap: 15px;
@@ -42,48 +74,53 @@
             z-index: 10;
         }
         .contact-pill {
-            background: rgba(0, 0, 0, 0.3); /* Darker pill */
+            background: var(--glass-bg);
             padding: 8px 16px;
             border-radius: 50px;
             display: flex;
             align-items: center;
             gap: 8px;
-            border: 1px solid rgba(255,255,255,0.1);
+            border: 1px solid var(--glass-border);
             text-decoration: none;
             color: white;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(var(--glass-blur));
             transition: 0.3s;
         }
-        .contact-pill:hover { border-color: var(--accent); background: rgba(0, 136, 204, 0.1); }
+        .contact-pill:hover { border-color: var(--accent); background: rgba(0, 136, 204, 0.2); }
+        
         .dot { width: 8px; height: 8px; border-radius: 50%; }
-        .green { background: #00ff88; box-shadow: 0 0 10px #00ff88; }
-        .blue { background: #0088cc; box-shadow: 0 0 10px #0088cc; }
+        .green { background: #00ff88; animation: pulse 2s infinite; }
+        .blue { background: #0088cc; }
 
-        /* --- HERO SECTION --- */
         .hero { text-align: center; max-width: 500px; margin-bottom: 40px; z-index: 10; }
         h1 {
-            font-size: 2.8rem;
+            font-size: 3rem;
             font-weight: 800;
             margin: 0 0 10px 0;
             letter-spacing: -1px;
-            /* Gradient Text */
-            background: linear-gradient(to bottom, #fff, #aaa);
+            text-transform: uppercase;
+            
+            /* Liquid Metal Effect */
+            background: linear-gradient(90deg, #fff 0%, #aaa 40%, #fff 50%, #aaa 60%, #fff 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: shine 4s linear infinite;
             text-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
+        
         .bio-box {
-            background: var(--surface);
-            padding: 20px;
-            border-radius: 15px;
-            font-size: 0.9rem;
-            color: #ccc;
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            padding: 25px;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #e0e0e0;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            box-shadow: 0 8px 32px rgba(0,0,0,0.5);
         }
         .highlight { color: var(--accent); font-weight: 600; }
 
-        /* --- BUTTON GRID --- */
         .grid {
             display: grid;
             gap: 15px;
@@ -93,75 +130,64 @@
             z-index: 10;
         }
         .btn {
-            background: var(--surface);
-            padding: 20px;
-            border-radius: 16px;
+            background: var(--glass-bg);
+            padding: 22px;
+            border-radius: 18px;
             text-decoration: none;
             color: white;
             display: flex;
             align-items: center;
             justify-content: space-between;
             font-weight: 600;
-            transition: transform 0.2s, background 0.2s;
-            border: 1px solid rgba(255,255,255,0.05);
-            backdrop-filter: blur(5px);
+            font-size: 1rem;
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(var(--glass-blur));
+            transition: all 0.3s ease;
+            
+            /* Floating Animation */
+            animation: float 6s ease-in-out infinite;
         }
+
+        /* Stagger the floating so they don't move in sync */
+        .btn:nth-child(1) { animation-delay: 0s; }
+        .btn:nth-child(2) { animation-delay: 1.5s; }
+        .btn:nth-child(3) { animation-delay: 3s; }
+        .btn:nth-child(4) { animation-delay: 4.5s; }
+
         .btn:hover {
-            background: rgba(255,255,255,0.08);
             transform: scale(1.02);
-            border-color: rgba(255,255,255,0.2);
+            border-color: rgba(255,255,255,0.4);
+            background: rgba(255,255,255,0.1);
+            animation-play-state: paused;
         }
         
-        /* Special Escrow Button */
+        /* Special Escrow Button Styling */
         .escrow-btn {
-            background: linear-gradient(135deg, rgba(0,136,204,0.8), rgba(0,85,128,0.8));
+            background: linear-gradient(135deg, rgba(0,136,204,0.9), rgba(0,85,128,0.9));
             border: 1px solid rgba(0,136,204,0.5);
-            box-shadow: 0 10px 30px rgba(0, 136, 204, 0.2);
+            animation: float 6s ease-in-out infinite, heartbeat 3s infinite; /* Double Animation */
         }
-        .escrow-btn:hover { transform: scale(1.02); filter: brightness(1.2); }
 
-        /* --- FAQ SECTION --- */
+        /* FAQ Section */
         .faq-section { width: 100%; max-width: 500px; z-index: 10; }
-        .faq-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 20px; color: #666; text-transform: uppercase; letter-spacing: 2px; text-align: center; }
+        .faq-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 20px; color: #ccc; text-transform: uppercase; letter-spacing: 2px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
         
         details {
-            background: var(--surface);
-            margin-bottom: 10px;
-            border-radius: 10px;
-            border: 1px solid rgba(255,255,255,0.05);
+            background: var(--glass-bg);
+            margin-bottom: 12px;
+            border-radius: 15px;
+            border: 1px solid var(--glass-border);
             overflow: hidden;
-            backdrop-filter: blur(5px);
+            backdrop-filter: blur(var(--glass-blur));
+            transition: 0.3s;
         }
-        summary {
-            padding: 15px 20px;
-            cursor: pointer;
-            font-weight: 600;
-            list-style: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 0.9rem;
-        }
-        summary::after { content: '+'; font-size: 1.2rem; color: #666; }
-        details[open] summary::after { content: '-'; }
-        .answer {
-            padding: 0 20px 20px 20px;
-            font-size: 0.85rem;
-            color: #aaa;
-            line-height: 1.6;
-            border-top: 1px solid rgba(255,255,255,0.05);
-            margin-top: 10px;
-            padding-top: 10px;
-        }
+        details[open] { border-color: var(--accent); background: rgba(0,0,0,0.9); }
+        summary { padding: 18px 25px; cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; }
+        summary::after { content: '+'; font-size: 1.2rem; color: #888; }
+        details[open] summary::after { content: '-'; color: var(--accent); }
+        .answer { padding: 0 25px 25px 25px; font-size: 0.9rem; color: #ccc; line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 5px; padding-top: 15px; }
 
-        /* Footer */
-        .footer {
-            margin-top: 50px;
-            font-size: 0.7rem;
-            color: #444;
-            text-align: center;
-        }
-
+        .footer { margin-top: 50px; font-size: 0.7rem; color: #aaa; text-align: center; text-shadow: 0 2px 4px black; }
     </style>
 </head>
 <body>
@@ -205,33 +231,25 @@
 
     <div class="faq-section">
         <div class="faq-title">Frequently Asked Questions</div>
-
+        
         <details>
             <summary>What are Telegram Usernames?</summary>
-            <div class="answer">
-                Telegram usernames are premium digital assets minted as NFTs on the TON Blockchain. They can be bought, sold, and owned permanently in your wallet (like Tonkeeper).
-            </div>
+            <div class="answer">Premium digital assets minted as NFTs on the TON Blockchain. They can be bought, sold, and owned permanently in your wallet.</div>
         </details>
-
+        
         <details>
             <summary>What are NFTs?</summary>
-            <div class="answer">
-                NFTs (Non-Fungible Tokens) are unique digital items. In our context, we deal with Telegram NFT gifts , Usernames, and art that have real market value.
-            </div>
+            <div class="answer">Unique digital items. We deal with Telegram Numbers, Usernames, and art that have real market value.</div>
         </details>
-
+        
         <details>
             <summary>How is trading done safely?</summary>
-            <div class="answer">
-                We use a "Middleman" or Escrow service. The buyer sends funds to us, the seller transfers the item to us. Once both are verified, we swap them. This ensures 0% scams.
-            </div>
+            <div class="answer">Via "Middleman" or Escrow. Buyer sends funds to us, seller transfers item to us. We verify & swap. 0% scams.</div>
         </details>
-
+        
         <details>
             <summary>What are your fees?</summary>
-            <div class="answer">
-                Our fees are standard for the ecosystem. Please check the "Fees" pinned message in our Escrow group or DM @im_techy for a quote on large deals.
-            </div>
+            <div class="answer">Our fees are standard for the ecosystem. Check the "Fees" pinned message in our Escrow group or DM @im_techy.</div>
         </details>
     </div>
     
