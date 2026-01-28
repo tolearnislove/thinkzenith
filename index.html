@@ -131,103 +131,169 @@
         }
         .btn {
             background: var(--glass-bg);
-            padding: 22px;
-            border-radius: 18px;
-            text-decoration: none;
+    <style>
+        :root {
+            --neon-cyan: #00f3ff;
+            --deep-space: #020204;
+            --cyber-blue: #0a1128;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background-color: var(--deep-space);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
             color: white;
+            overflow: hidden;
+            /* PERFORMANCE FIX: Smoother scrolling */
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* --- OPTIMIZED BACKGROUND --- */
+        .quantum-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 200%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
+            /* PERFORMANCE FIX: Tell browser to use GPU */
+            will-change: transform;
+            animation: cyber-move 20s linear infinite;
+            opacity: 0.3;
+            z-index: -1;
+        }
+
+        @keyframes cyber-move {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            100% { transform: translate(-50px, -50px) rotate(2deg); }
+        }
+
+        /* --- MAIN CONTAINER WITH GLOW --- */
+        .container {
+            text-align: center;
+            z-index: 2;
+            padding: 2rem;
+            background: rgba(10, 17, 40, 0.7);
+            border-radius: 24px;
+            /* NEW: Holographic border glow */
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 243, 255, 0.15);
+            backdrop-filter: blur(10px);
+            max-width: 90%;
+            width: 400px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: 2px;
+            /* PERFORMANCE FIX: Smoother text animation */
+            will-change: text-shadow, opacity;
+            animation: pulse-glow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse-glow {
+            from { text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan); opacity: 0.9; }
+            to { text-shadow: 0 0 20px var(--neon-cyan), 0 0 30px var(--neon-cyan), 0 0 40px var(--neon-cyan); opacity: 1; }
+        }
+
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            margin-bottom: 2rem;
+            font-size: 0.9rem;
             display: flex;
             align-items: center;
-            justify-content: space-between;
-            font-weight: 600;
-            font-size: 1rem;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(var(--glass-blur));
-            transition: all 0.3s ease;
-            
-            /* Floating Animation */
-            animation: float 6s ease-in-out infinite;
+            justify-content: center;
+            gap: 8px;
+        }
+        
+        /* NEW: Icon styling */
+        .subtitle i { color: var(--neon-cyan); }
+
+        /* --- GLOWING BUTTONS --- */
+        .grid {
+            display: grid;
+            gap: 1rem;
         }
 
-        /* Stagger the floating so they don't move in sync */
-        .btn:nth-child(1) { animation-delay: 0s; }
-        .btn:nth-child(2) { animation-delay: 1.5s; }
-        .btn:nth-child(3) { animation-delay: 3s; }
-        .btn:nth-child(4) { animation-delay: 4.5s; }
+        .btn {
+            background: rgba(0, 243, 255, 0.05);
+            border: 1px solid rgba(0, 243, 255, 0.2);
+            padding: 1rem;
+            border-radius: 12px;
+            color: white;
+            text-decoration: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 500;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            /* NEW: Button Glow */
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.1);
+        }
+        
+        /* NEW: Styling for icons inside buttons */
+        .btn .icon-left { margin-right: 10px; color: var(--neon-cyan); }
+        .btn .icon-right { font-size: 0.9rem; opacity: 0.7; transition: transform 0.3s ease; }
 
         .btn:hover {
-            transform: scale(1.02);
-            border-color: rgba(255,255,255,0.4);
-            background: rgba(255,255,255,0.1);
-            animation-play-state: paused;
+            background: rgba(0, 243, 255, 0.15);
+            border-color: var(--neon-cyan);
+            transform: translateY(-3px) scale(1.02);
+            /* NEW: Intense hover glow */
+            box-shadow: 0 0 25px rgba(0, 243, 255, 0.4);
         }
         
-        /* Special Escrow Button Styling */
+        .btn:hover .icon-right {
+            transform: translateX(5px);
+            color: var(--neon-cyan);
+            opacity: 1;
+        }
+
         .escrow-btn {
-            background: linear-gradient(135deg, rgba(0,136,204,0.9), rgba(0,85,128,0.9));
-            border: 1px solid rgba(0,136,204,0.5);
-            animation: float 6s ease-in-out infinite, heartbeat 3s infinite; /* Double Animation */
+            background: linear-gradient(45deg, rgba(0, 243, 255, 0.2), transparent);
+            border: 1px solid var(--neon-cyan);
+            font-weight: 700;
+            letter-spacing: 1px;
         }
-
-        /* FAQ Section */
-        .faq-section { width: 100%; max-width: 500px; z-index: 10; }
-        .faq-title { font-size: 0.9rem; font-weight: 800; margin-bottom: 20px; color: #ccc; text-transform: uppercase; letter-spacing: 2px; text-align: center; text-shadow: 0 2px 4px rgba(0,0,0,0.8); }
-        
-        details {
-            background: var(--glass-bg);
-            margin-bottom: 12px;
-            border-radius: 15px;
-            border: 1px solid var(--glass-border);
-            overflow: hidden;
-            backdrop-filter: blur(var(--glass-blur));
-            transition: 0.3s;
-        }
-        details[open] { border-color: var(--accent); background: rgba(0,0,0,0.9); }
-        summary { padding: 18px 25px; cursor: pointer; font-weight: 600; list-style: none; display: flex; justify-content: space-between; align-items: center; font-size: 0.95rem; }
-        summary::after { content: '+'; font-size: 1.2rem; color: #888; }
-        details[open] summary::after { content: '-'; color: var(--accent); }
-        .answer { padding: 0 25px 25px 25px; font-size: 0.9rem; color: #ccc; line-height: 1.7; border-top: 1px solid rgba(255,255,255,0.05); margin-top: 5px; padding-top: 15px; }
-
-        .footer { margin-top: 50px; font-size: 0.7rem; color: #aaa; text-align: center; text-shadow: 0 2px 4px black; }
     </style>
+
 </head>
 <body>
+    <div class="quantum-grid"></div>
 
-    <div class="contact-bar">
-        <a href="https://t.me/im_techy" class="contact-pill">
-            <span class="dot green"></span> Main: @im_techy
-        </a>
-        <a href="https://t.me/im_orbix" class="contact-pill">
-            <span class="dot blue"></span> Support: @im_orbix
-        </a>
-    </div>
+    <div class="container">
+        <h1><i class="fas fa-bolt"></i> THINKZENITH HUB</h1>
+        <p class="subtitle"><i class="far fa-gem"></i> Premium Digital Services</p>
 
-    <div class="hero">
-        <h1>THINKZENITH</h1>
-        <div class="bio-box">
-            With <span class="highlight">2+ Years</span> of experience in the TON Ecosystem, I specialize in premium Telegram NFT gifts ,username acquisitions and NFT trading. 
-            <br><br>
-            Owner of <b>Orbix Portal</b>. We provide a 100% Secure Environment for your digital asset deals.
+        <div class="grid">
+            <a href="https://t.me/Orbixmrkt" class="btn">
+                <span><i class="fas fa-globe icon-left"></i> Orbix Portal (Main)</span>
+                <i class="fas fa-chevron-right icon-right"></i>
+            </a>
+            <a href="https://t.me/orbiXTrustline" class="btn">
+                <span><i class="fas fa-star icon-left"></i> Verified Vouches</span>
+                <i class="fas fa-chevron-right icon-right"></i>
+            </a>
+            <a href="https://t.me/glory_worldd" class="btn">
+                <span><i class="fas fa-chart-line icon-left"></i> Buy / Sell Market</span>
+                <i class="fas fa-chevron-right icon-right"></i>
+            </a>
+            <a href="https://t.me/GloryXworld" class="btn escrow-btn">
+                <span><i class="fas fa-shield-alt icon-left"></i> SECURE ESCROW</span>
+                <i class="fas fa-lock icon-right"></i>
+            </a>
         </div>
     </div>
-
-    <div class="grid">
-        <a href="https://t.me/Orbixmrkt" class="btn">
-            <span>🌐 Orbix Portal (Main)</span>
-            <span>→</span>
-        </a>
-        <a href="https://t.me/orbiXTrustline" class="btn">
-            <span>⭐ Verified Vouches</span>
-            <span>→</span>
-        </a>
-        <a href="https://t.me/glory_worldd" class="btn">
-            <span>📊 Buy / Sell Market</span>
-            <span>→</span>
-        </a>
-        <a href="https://t.me/GloryXworld" class="btn escrow-btn">
-            <span>🛡️ SECURE ESCROW SERVICE</span>
-            <span>🔒</span>
-        </a>
-    </div>
+</body>
 
     <div class="faq-section">
         <div class="faq-title">Frequently Asked Questions</div>
