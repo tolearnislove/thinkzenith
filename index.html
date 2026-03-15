@@ -161,23 +161,23 @@ body {
 }
 .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--teal); opacity: 0.5; }
 
-/* H1 — SVG based, ALWAYS fits, never overflows, never breaks */
-.h1-wrap {
-  width: 100%;
-  margin-bottom: 8px;
-  overflow: hidden;
-}
-.h1-svg {
-  width: 100%;
-  height: auto;
-  display: block;
-}
-.h1-text {
+/* H1 — pure CSS, guaranteed single line */
+.h1-wrap { width: 100%; margin-bottom: 8px; }
+h1 {
   font-family: 'Syne', sans-serif;
   font-weight: 800;
-  fill: #EDE8DF;
-  filter: drop-shadow(0 0 30px rgba(200,216,232,0.15));
+  color: #EDE8DF;
+  text-shadow: 0 0 40px rgba(200,216,232,0.15);
+  white-space: nowrap;
+  font-size: 8.5vw;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  margin: 0 0 6px 0;
+  width: 100%;
+  text-align: center;
+  display: block;
 }
+@media (min-width: 560px) { h1 { font-size: 3rem; } }
 
 .hero-sub {
   font-family: 'Inter', sans-serif; font-weight: 500;
@@ -419,11 +419,9 @@ details[open] summary::after { transform: rotate(180deg); color: var(--silver); 
 <div class="hero fade">
   <div class="hero-eyebrow">TON Ecosystem · Digital Assets</div>
 
-  <!-- SVG H1 — scales perfectly to any screen width, never breaks -->
+  <!-- H1 -->
   <div class="h1-wrap">
-    <svg class="h1-svg" viewBox="0 0 820 90" xmlns="http://www.w3.org/2000/svg">
-      <text class="h1-text" x="410" y="76" text-anchor="middle" font-size="88">THINKZENITH</text>
-    </svg>
+    <h1>THINKZENITH</h1>
   </div>
 
   <p class="hero-sub">Orbix Portal &nbsp;·&nbsp; Secure Trading Hub</p>
