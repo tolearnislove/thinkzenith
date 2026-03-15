@@ -1,274 +1,709 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>THINKZENITH | Premium Hub</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap" rel="stylesheet">
-    
-    <style>
-        :root {
-            --neon-cyan: #00f3ff;
-            --deep-space: #050b14;
-            --glass-bg: rgba(10, 17, 40, 0.75);
-            --glass-border: rgba(0, 243, 255, 0.2);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>THINKZENITH | Premium TON Hub</title>
+<meta name="description" content="ThinkZenith — Premium TON Ecosystem trading hub. Buy and sell Telegram Usernames and NFTs with 100% secure escrow.">
+<meta property="og:title" content="ThinkZenith | Premium TON NFT Trading">
+<meta property="og:description" content="Secure escrow. 40+ verified deals. 1000+ TON traded. Your trusted hub in the TON ecosystem.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://thinkzenith.in">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:         #06080d;
+  --card:       #0f1320;
+  --card2:      #131828;
+  --silver:     #C8D8E8;
+  --silver-b:   #e8f4ff;
+  --silver-mid: #a8c4d8;
+  --silver-dim: #3a5068;
+  --silver-gl:  rgba(200,216,232,0.08);
+  --silver-gl2: rgba(200,216,232,0.04);
+  --cream:      #EDE8DF;
+  --muted:      #6888a4;
+  --body:       #a8c0d4;
+  --teal:       #4ecdc4;
+  --blue:       #5b9bd5;
+  --green:      #52c97a;
+  --border:     rgba(200,216,232,0.09);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--bg);
+  color: var(--body);
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  min-height: 100vh;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px 56px;
+  position: relative;
+}
 
-        body {
-            background-color: var(--deep-space);
-            color: white;
-            font-family: 'Poppins', sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            min-height: 100vh;
-            overflow-x: hidden; /* Stops side scrolling */
-        }
+/* ── BG SVG LOGOS ── */
+.bg-logos { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+.bg-ton {
+  position: absolute; top: -80px; right: -120px;
+  width: 520px; height: 520px; opacity: 0.055;
+  animation: bg-drift1 25s ease-in-out infinite alternate;
+}
+.bg-tg {
+  position: absolute; bottom: 60px; left: -100px;
+  width: 440px; height: 440px; opacity: 0.045;
+  animation: bg-drift2 30s ease-in-out infinite alternate;
+}
+.bg-ton2 {
+  position: absolute; top: 45%; left: -80px;
+  width: 280px; height: 280px; opacity: 0.03;
+  animation: bg-drift1 20s ease-in-out infinite alternate-reverse;
+}
+@keyframes bg-drift1 { from{transform:translate(0,0) rotate(0deg);} to{transform:translate(30px,40px) rotate(8deg);} }
+@keyframes bg-drift2 { from{transform:translate(0,0) rotate(0deg);} to{transform:translate(-25px,35px) rotate(-6deg);} }
 
-        /* --- 2. SMOOTH BACKGROUND (NO LAG) --- */
-        .quantum-grid {
-            position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background-image: 
-                linear-gradient(rgba(0, 243, 255, 0.05) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 243, 255, 0.05) 1px, transparent 1px);
-            background-size: 50px 50px;
-            transform: perspective(500px) rotateX(60deg);
-            animation: grid-fly 20s linear infinite;
-            z-index: -1;
-            will-change: transform; /* GPU Acceleration for Smoothness */
-        }
+/* ── GRID ── */
+.quantum-grid {
+  position: fixed; top: -50%; left: -50%; width: 200%; height: 200%;
+  background-image:
+    linear-gradient(rgba(200,216,232,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,216,232,0.025) 1px, transparent 1px);
+  background-size: 50px 50px;
+  transform: perspective(500px) rotateX(60deg);
+  animation: grid-fly 28s linear infinite;
+  z-index: 0; will-change: transform;
+}
+@keyframes grid-fly {
+  0%   { transform: perspective(500px) rotateX(60deg) translateY(0); }
+  100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
+}
 
-        @keyframes grid-fly {
-            0% { transform: perspective(500px) rotateX(60deg) translateY(0); }
-            100% { transform: perspective(500px) rotateX(60deg) translateY(50px); }
-        }
+/* ── NOISE ── */
+.noise {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity: 0.28;
+}
 
-        /* --- 3. CONTACT BAR --- */
-        .contact-bar {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 30px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            z-index: 10;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
+.content-wrap { position: relative; z-index: 2; width: 100%; display: flex; flex-direction: column; align-items: center; }
 
-        .contact-pill {
-            background: rgba(0, 243, 255, 0.05);
-            padding: 8px 16px;
-            border-radius: 50px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border: 1px solid var(--glass-border);
-            text-decoration: none;
-            color: #ccc;
-            backdrop-filter: blur(10px);
-            transition: 0.3s;
-        }
+/* ── TICKER ── */
+.ticker-wrap {
+  width: 100vw; overflow: hidden;
+  background: rgba(200,216,232,0.03);
+  border-bottom: 1px solid var(--border);
+  padding: 9px 0; margin-bottom: 30px;
+}
+.ticker { display: flex; gap: 52px; width: max-content; animation: ticker 28s linear infinite; }
+.ticker-item {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 0.64rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--silver-mid); white-space: nowrap; display: flex; align-items: center; gap: 9px;
+}
+.ticker-item::before { content: '◆'; color: var(--silver-dim); font-size: 0.38rem; }
+@keyframes ticker { from{transform:translateX(0);} to{transform:translateX(-50%);} }
 
-        .contact-pill:hover {
-            border-color: var(--neon-cyan);
-            background: rgba(0, 243, 255, 0.15);
-            color: white;
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.2);
-        }
+/* ── CONTACT PILLS — Telegram style ── */
+.contact-bar { display: flex; gap: 12px; margin-bottom: 28px; flex-wrap: wrap; justify-content: center; }
 
-        .contact-pill i { color: var(--neon-cyan); font-size: 0.9rem; }
+.contact-pill {
+  display: flex; align-items: center; gap: 0;
+  text-decoration: none; border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid rgba(91,155,213,0.35);
+  transition: all 0.3s;
+  box-shadow: 0 0 0 rgba(91,155,213,0);
+}
+.contact-pill:hover {
+  border-color: rgba(91,155,213,0.7);
+  box-shadow: 0 0 16px rgba(91,155,213,0.2), 0 0 32px rgba(91,155,213,0.08);
+  transform: translateY(-2px);
+}
 
-        /* --- 4. HERO SECTION --- */
-        .hero { text-align: center; max-width: 500px; margin-bottom: 30px; z-index: 10; }
-        
-        h1 {
-            font-size: 2.8rem;
-            font-weight: 800;
-            margin: 0 0 15px 0;
-            letter-spacing: -1px;
-            text-transform: uppercase;
-            color: white;
-            text-shadow: 0 0 20px rgba(0, 243, 255, 0.5); /* Neon Glow */
-        }
-        
-        .bio-box {
-            background: var(--glass-bg);
-            padding: 25px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            color: #d0d0d0;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
-            line-height: 1.6;
-        }
-        
-        .highlight { color: var(--neon-cyan); font-weight: 600; }
+/* Left colored Telegram icon block */
+.pill-icon-block {
+  background: rgba(91,155,213,0.18);
+  padding: 11px 13px;
+  display: flex; align-items: center; justify-content: center;
+  border-right: 1px solid rgba(91,155,213,0.25);
+  transition: background 0.3s;
+}
+.contact-pill:hover .pill-icon-block { background: rgba(91,155,213,0.28); }
+.pill-icon-block i { color: var(--blue); font-size: 0.95rem; }
 
-        /* --- 5. BUTTONS (GLOW + FLOAT) --- */
-        .grid {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            width: 100%;
-            max-width: 500px;
-            margin-bottom: 50px;
-            z-index: 10;
-        }
+/* Right text block */
+.pill-text { padding: 9px 14px; background: rgba(91,155,213,0.05); }
+.pill-label {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--muted); line-height: 1; margin-bottom: 3px;
+}
+.pill-name {
+  font-family: 'Inter', sans-serif; font-weight: 600;
+  font-size: 0.95rem; color: var(--silver-b); line-height: 1.2;
+  display: flex; align-items: center; gap: 6px;
+}
+.pill-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; box-shadow: 0 0 6px var(--green); flex-shrink: 0; }
+@keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.45;transform:scale(0.7);} }
 
-        .btn {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 20px;
-            border-radius: 16px;
-            text-decoration: none;
-            color: white;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            font-weight: 600;
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
+/* ── HERO ── */
+.hero { text-align: center; max-width: 560px; margin-bottom: 28px; }
+.hero-eyebrow {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
+  color: var(--teal); margin-bottom: 13px;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+}
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--teal); opacity: 0.5; }
+h1 {
+  font-family: 'Syne', sans-serif; font-size: clamp(2.3rem, 9vw, 3.8rem);
+  font-weight: 800; color: var(--cream); letter-spacing: 0.07em; margin-bottom: 6px;
+  text-shadow: 0 0 60px rgba(200,216,232,0.12);
+}
+.hero-sub {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 0.72rem; color: var(--muted); letter-spacing: 0.2em;
+  text-transform: uppercase; margin-bottom: 22px;
+}
+.bio-box {
+  background: rgba(15,19,32,0.92); padding: 24px;
+  border: 1px solid var(--border);
+  font-size: 0.88rem; line-height: 1.85; position: relative;
+  backdrop-filter: blur(6px);
+}
+.bio-box::before {
+  content: ''; position: absolute; top: 0; left: 12%; right: 12%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--silver-dim), transparent);
+}
+.hl-s { color: var(--silver);  font-weight: 600; }
+.hl-t { color: var(--teal);    font-weight: 600; }
+.hl-b { color: var(--blue);    font-weight: 600; }
 
-        .btn i { color: var(--neon-cyan); margin-right: 10px; width: 20px; text-align: center; }
-        .btn span { display: flex; align-items: center; }
+/* ── STATS ── */
+.stats-bar {
+  display: flex; width: 100%; max-width: 560px;
+  border: 1px solid var(--border); margin-bottom: 28px;
+  background: rgba(15,19,32,0.9); backdrop-filter: blur(6px);
+}
+.stat-item { flex: 1; text-align: center; padding: 15px 8px; border-right: 1px solid var(--border); }
+.stat-item:last-child { border-right: none; }
+.stat-num { font-family: 'Syne', sans-serif; font-size: 1.65rem; font-weight: 800; line-height: 1; margin-bottom: 4px; }
+.sn-s{color:var(--silver);} .sn-t{color:var(--teal);} .sn-b{color:var(--blue);} .sn-g{color:var(--green);}
+.stat-lbl { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 0.58rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--muted); }
 
-        /* Hover Glow Effect */
-        .btn:hover {
-            transform: translateY(-3px);
-            border-color: var(--neon-cyan);
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.2);
-            background: rgba(0, 243, 255, 0.05);
-        }
+/* ── SECTION LABEL ── */
+.slabel {
+  width: 100%; max-width: 560px;
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 0.6rem; letter-spacing: 0.26em; text-transform: uppercase;
+  color: var(--silver-dim); margin-bottom: 10px; margin-top: 4px;
+  display: flex; align-items: center; gap: 9px;
+}
+.slabel i { font-size: 0.72rem; }
+.slabel::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
 
-        /* Escrow Button (Special) */
-        .escrow-btn {
-            background: linear-gradient(90deg, rgba(0, 243, 255, 0.1), transparent);
-            border: 1px solid var(--neon-cyan);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
-        }
-        .escrow-btn:hover {
-            box-shadow: 0 0 30px rgba(0, 243, 255, 0.4);
-        }
+/* ── LEARN CARDS ── */
+.learn-grid { display: flex; flex-direction: column; gap: 2px; width: 100%; max-width: 560px; margin-bottom: 28px; }
+.learn-card {
+  background: rgba(15,19,32,0.9); border: 1px solid var(--border);
+  padding: 17px 20px; cursor: pointer; transition: border-color 0.3s, background 0.3s;
+}
+.learn-card:hover { border-color: rgba(200,216,232,0.2); background: var(--card2); }
+.lc-header { display: flex; justify-content: space-between; align-items: center; }
+.lc-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--silver-b); display: flex; align-items: center; gap: 9px; }
+.lc-title i { font-size: 0.78rem; }
+.lc-toggle { color: var(--silver-dim); font-size: 0.68rem; transition: transform 0.3s; }
+.learn-card.open .lc-toggle { transform: rotate(45deg); color: var(--silver); }
+.lc-body { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; font-size: 0.81rem; color: var(--body); line-height: 1.82; }
+.learn-card.open .lc-body { max-height: 280px; padding-top: 12px; }
 
-        /* --- 6. FAQ SECTION --- */
-        .faq-section { width: 100%; max-width: 500px; z-index: 10; margin-bottom: 30px; }
-        .faq-title { 
-            font-size: 0.9rem; font-weight: 800; margin-bottom: 20px; 
-            color: #888; text-transform: uppercase; letter-spacing: 2px; text-align: center; 
-        }
-        
-        details {
-            background: rgba(255, 255, 255, 0.02);
-            margin-bottom: 12px;
-            border-radius: 12px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            overflow: hidden;
-            transition: 0.3s;
-        }
-        
-        details[open] { 
-            border-color: var(--neon-cyan); 
-            background: rgba(0, 243, 255, 0.05);
-            box-shadow: 0 0 15px rgba(0, 243, 255, 0.1);
-        }
+/* ── GLOW BUTTONS ── */
+.links-grid { display: flex; flex-direction: column; gap: 12px; width: 100%; max-width: 560px; margin-bottom: 28px; }
 
-        summary { 
-            padding: 18px 20px; cursor: pointer; font-weight: 600; list-style: none; 
-            display: flex; justify-content: space-between; align-items: center; font-size: 0.9rem; 
-        }
-        summary::after { content: '\f078'; font-family: "Font Awesome 6 Free"; font-weight: 900; color: #666; transition: 0.3s; }
-        details[open] summary::after { transform: rotate(180deg); color: var(--neon-cyan); }
-        
-        .answer { 
-            padding: 0 20px 20px 20px; font-size: 0.85rem; color: #bbb; line-height: 1.6; 
-            border-top: 1px solid rgba(255, 255, 255, 0.05); margin-top: 0; padding-top: 15px; 
-        }
+.btn {
+  padding: 0; border: 1px solid;
+  text-decoration: none; display: flex; align-items: stretch;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem;
+  transition: all 0.3s; position: relative; overflow: hidden;
+  backdrop-filter: blur(6px);
+}
 
-        .footer { 
-            font-size: 0.7rem; color: #666; text-align: center; margin-bottom: 20px; z-index: 10;
-        }
-    </style>
+/* Glow pulse on border */
+.btn::after {
+  content: '';
+  position: absolute; inset: -1px;
+  border: 1px solid transparent;
+  transition: all 0.3s;
+  pointer-events: none;
+}
+
+/* Inner layout */
+.btn-inner {
+  flex: 1; display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 18px; gap: 12px;
+}
+.btn-left { display: flex; align-items: center; gap: 12px; }
+.btn-icon-wrap {
+  width: 34px; height: 34px; display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border: 1px solid; transition: all 0.3s;
+}
+.btn-label { display: flex; flex-direction: column; gap: 2px; }
+.btn-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem; }
+.btn-hint  { font-family: 'Inter', sans-serif; font-weight: 400; font-size: 0.68rem; letter-spacing: 0.05em; opacity: 0.6; }
+
+/* Arrow — animated on hover */
+.btn-arrow {
+  font-size: 0.75rem; flex-shrink: 0;
+  transition: transform 0.3s, color 0.3s;
+  display: flex; align-items: center; gap: 4px;
+}
+.btn:hover .btn-arrow { transform: translateX(5px); }
+
+/* ── ORBIX — teal glow ── */
+.btn-orbix { background: rgba(78,205,196,0.04); border-color: rgba(78,205,196,0.3); }
+.btn-orbix:hover {
+  border-color: rgba(78,205,196,0.8);
+  background: rgba(78,205,196,0.07);
+  box-shadow: 0 0 18px rgba(78,205,196,0.2), 0 0 40px rgba(78,205,196,0.08), inset 0 0 20px rgba(78,205,196,0.03);
+  transform: translateY(-2px);
+}
+.btn-orbix .btn-icon-wrap { border-color: rgba(78,205,196,0.3); color: var(--teal); }
+.btn-orbix:hover .btn-icon-wrap { background: rgba(78,205,196,0.12); border-color: var(--teal); box-shadow: 0 0 10px rgba(78,205,196,0.3); }
+.btn-orbix .btn-title { color: var(--teal); }
+.btn-orbix .btn-hint  { color: var(--teal); }
+.btn-orbix .btn-arrow { color: rgba(78,205,196,0.5); }
+.btn-orbix:hover .btn-arrow { color: var(--teal); }
+
+/* ── VOUCHES — silver glow ── */
+.btn-vouch { background: var(--silver-gl2); border-color: rgba(200,216,232,0.2); }
+.btn-vouch:hover {
+  border-color: rgba(200,216,232,0.7);
+  background: rgba(200,216,232,0.06);
+  box-shadow: 0 0 18px rgba(200,216,232,0.15), 0 0 40px rgba(200,216,232,0.05), inset 0 0 20px rgba(200,216,232,0.02);
+  transform: translateY(-2px);
+}
+.btn-vouch .btn-icon-wrap { border-color: rgba(200,216,232,0.2); color: var(--silver); }
+.btn-vouch:hover .btn-icon-wrap { background: rgba(200,216,232,0.1); border-color: var(--silver); box-shadow: 0 0 10px rgba(200,216,232,0.2); }
+.btn-vouch .btn-title { color: var(--silver-b); }
+.btn-vouch .btn-hint  { color: var(--silver-mid); }
+.btn-vouch .btn-arrow { color: var(--silver-dim); }
+.btn-vouch:hover .btn-arrow { color: var(--silver); }
+
+/* ── DEAL — blue glow ── */
+.btn-deal { background: rgba(91,155,213,0.05); border-color: rgba(91,155,213,0.3); }
+.btn-deal:hover {
+  border-color: rgba(91,155,213,0.8);
+  background: rgba(91,155,213,0.09);
+  box-shadow: 0 0 18px rgba(91,155,213,0.2), 0 0 40px rgba(91,155,213,0.08), inset 0 0 20px rgba(91,155,213,0.03);
+  transform: translateY(-2px);
+}
+.btn-deal .btn-icon-wrap { border-color: rgba(91,155,213,0.3); color: var(--blue); }
+.btn-deal:hover .btn-icon-wrap { background: rgba(91,155,213,0.15); border-color: var(--blue); box-shadow: 0 0 10px rgba(91,155,213,0.3); }
+.btn-deal .btn-title { color: var(--blue); }
+.btn-deal .btn-hint  { color: var(--blue); }
+.btn-deal .btn-arrow { color: rgba(91,155,213,0.5); }
+.btn-deal:hover .btn-arrow { color: var(--blue); }
+
+/* ── DIARY — dim dashed ── */
+.btn-diary { background: var(--silver-gl2); border-style: dashed; border-color: rgba(200,216,232,0.15); }
+.btn-diary:hover {
+  border-color: rgba(200,216,232,0.45);
+  background: var(--silver-gl);
+  box-shadow: 0 0 14px rgba(200,216,232,0.08);
+  transform: translateY(-2px);
+}
+.btn-diary .btn-icon-wrap { border-color: rgba(200,216,232,0.15); color: var(--silver-mid); }
+.btn-diary:hover .btn-icon-wrap { background: rgba(200,216,232,0.08); border-color: var(--silver-mid); }
+.btn-diary .btn-title { color: var(--silver-mid); }
+.btn-diary .btn-hint  { color: var(--silver-dim); }
+.btn-diary .btn-arrow { color: var(--silver-dim); }
+.btn-diary:hover .btn-arrow { color: var(--silver-mid); }
+.new-tag {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 0.54rem; letter-spacing: 0.1em; text-transform: uppercase;
+  background: rgba(200,216,232,0.06); border: 1px solid var(--silver-dim);
+  color: var(--silver-mid); padding: 2px 7px; flex-shrink: 0;
+}
+
+/* ── HOW IT WORKS ── */
+.steps { width: 100%; max-width: 560px; margin-bottom: 28px; border: 1px solid var(--border); background: rgba(15,19,32,0.9); backdrop-filter: blur(6px); }
+.step { display: flex; gap: 16px; padding: 19px 20px; border-bottom: 1px solid rgba(200,216,232,0.05); align-items: flex-start; }
+.step:last-child { border-bottom: none; }
+.step-badge {
+  flex-shrink: 0; width: 30px; height: 30px; border: 1px solid;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.75rem; margin-top: 1px;
+}
+.s1 .step-badge{border-color:rgba(78,205,196,0.45);color:var(--teal);}
+.s2 .step-badge{border-color:rgba(91,155,213,0.45);color:var(--blue);}
+.s3 .step-badge{border-color:rgba(200,216,232,0.3);color:var(--silver);}
+.s4 .step-badge{border-color:rgba(82,201,122,0.45);color:var(--green);}
+.step-title { font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.88rem; color: var(--silver-b); margin-bottom: 5px; }
+.step-text  { font-size: 0.79rem; color: var(--body); line-height: 1.78; }
+
+/* ── FAQ ── */
+.faq-wrap { width: 100%; max-width: 560px; margin-bottom: 28px; }
+details { background: rgba(15,19,32,0.9); margin-bottom: 6px; border: 1px solid var(--border); overflow: hidden; transition: 0.3s; backdrop-filter: blur(6px); }
+details[open] { border-color: rgba(200,216,232,0.2); background: var(--card2); }
+summary {
+  padding: 15px 18px; cursor: pointer; list-style: none;
+  display: flex; justify-content: space-between; align-items: center;
+  font-family: 'Inter', sans-serif; font-weight: 600; font-size: 0.86rem; color: var(--silver-b);
+}
+summary::after { content: '\f078'; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--silver-dim); font-size: 0.65rem; transition: 0.3s; flex-shrink: 0; margin-left: 12px; }
+details[open] summary::after { transform: rotate(180deg); color: var(--silver); }
+.answer { padding: 0 18px 15px; font-size: 0.8rem; color: var(--body); line-height: 1.8; border-top: 1px solid rgba(200,216,232,0.05); padding-top: 12px; }
+
+/* ── FOOTER ── */
+.footer {
+  font-family: 'Inter', sans-serif; font-weight: 500;
+  font-size: 0.6rem; color: var(--silver-dim); text-align: center;
+  padding-top: 10px; border-top: 1px solid var(--border);
+  width: 100%; max-width: 560px; letter-spacing: 0.12em;
+}
+
+/* ── FADE ── */
+.fade { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
+.fade.visible { opacity: 1; transform: translateY(0); }
+
+@media (max-width: 480px) {
+  h1 { font-size: 2rem; }
+  .stats-bar { flex-wrap: wrap; }
+  .stat-item { min-width: 50%; border-bottom: 1px solid var(--border); }
+  .stat-item:nth-child(2) { border-right: none; }
+  .btn-hint { display: none; }
+}
+</style>
 </head>
 <body>
 
-    <div class="quantum-grid"></div>
+<!-- BG SVG LOGOS -->
+<div class="bg-logos">
+  <svg class="bg-ton" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 L190 55 L190 145 L100 190 L10 145 L10 55 Z" stroke="#5b9bd5" stroke-width="2" fill="rgba(91,155,213,0.06)"/>
+    <path d="M100 10 L100 190 M10 55 L190 145 M190 55 L10 145" stroke="#5b9bd5" stroke-width="0.8" opacity="0.4"/>
+    <circle cx="100" cy="100" r="18" fill="rgba(91,155,213,0.15)" stroke="#5b9bd5" stroke-width="1.5"/>
+    <path d="M100 10 L130 60 L100 50 L70 60 Z" fill="rgba(91,155,213,0.2)"/>
+    <path d="M70 60 L100 50 L130 60 L100 190 Z" fill="rgba(91,155,213,0.08)"/>
+  </svg>
+  <svg class="bg-tg" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="100" cy="100" r="90" stroke="#4ecdc4" stroke-width="2" fill="rgba(78,205,196,0.04)"/>
+    <circle cx="100" cy="100" r="72" stroke="#4ecdc4" stroke-width="0.6" opacity="0.3"/>
+    <path d="M40 100 L160 55 L120 155 L95 118 L75 130 Z" fill="rgba(78,205,196,0.18)" stroke="#4ecdc4" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M95 118 L160 55" stroke="#4ecdc4" stroke-width="1" opacity="0.5"/>
+    <path d="M75 130 L82 105 L95 118 Z" fill="rgba(78,205,196,0.3)"/>
+  </svg>
+  <svg class="bg-ton2" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 L190 55 L190 145 L100 190 L10 145 L10 55 Z" stroke="#5b9bd5" stroke-width="2" fill="rgba(91,155,213,0.04)"/>
+    <path d="M100 10 L100 190 M10 55 L190 145 M190 55 L10 145" stroke="#5b9bd5" stroke-width="0.8" opacity="0.3"/>
+    <path d="M100 10 L130 60 L100 50 L70 60 Z" fill="rgba(91,155,213,0.15)"/>
+    <path d="M70 60 L100 50 L130 60 L100 190 Z" fill="rgba(91,155,213,0.06)"/>
+  </svg>
+</div>
+<div class="quantum-grid"></div>
+<div class="noise"></div>
 
-    <div class="contact-bar">
-        <a href="https://t.me/im_techy" class="contact-pill">
-            <i class="fas fa-user-astronaut"></i> Main: @im_techy
-        </a>
-        <a href="https://t.me/im_orbix" class="contact-pill">
-            <i class="fas fa-headset"></i> Support: @im_orbix
-        </a>
+<div class="content-wrap">
+
+<!-- TICKER -->
+<div class="ticker-wrap fade">
+  <div class="ticker">
+    <span class="ticker-item">100% Secure Escrow</span>
+    <span class="ticker-item">TON Blockchain Verified</span>
+    <span class="ticker-item">Telegram Username NFTs</span>
+    <span class="ticker-item">1000+ TON Traded</span>
+    <span class="ticker-item">40+ Verified Deals</span>
+    <span class="ticker-item">2+ Years Experience</span>
+    <span class="ticker-item">Zero Scams</span>
+    <span class="ticker-item">Fragment Marketplace</span>
+    <span class="ticker-item">Orbix Portal</span>
+    <span class="ticker-item">100% Secure Escrow</span>
+    <span class="ticker-item">TON Blockchain Verified</span>
+    <span class="ticker-item">Telegram Username NFTs</span>
+    <span class="ticker-item">1000+ TON Traded</span>
+    <span class="ticker-item">40+ Verified Deals</span>
+    <span class="ticker-item">2+ Years Experience</span>
+    <span class="ticker-item">Zero Scams</span>
+    <span class="ticker-item">Fragment Marketplace</span>
+    <span class="ticker-item">Orbix Portal</span>
+  </div>
+</div>
+
+<!-- CONTACT BAR -->
+<div class="contact-bar fade">
+  <a href="https://t.me/im_techy" target="_blank" class="contact-pill">
+    <div class="pill-icon-block">
+      <i class="fab fa-telegram"></i>
     </div>
+    <div class="pill-text">
+      <div class="pill-label">Main Contact</div>
+      <div class="pill-name">
+        <span class="pill-dot"></span>
+        AlgoSphere
+      </div>
+    </div>
+  </a>
+  <a href="https://t.me/im_orbix" target="_blank" class="contact-pill">
+    <div class="pill-icon-block">
+      <i class="fab fa-telegram"></i>
+    </div>
+    <div class="pill-text">
+      <div class="pill-label">Support</div>
+      <div class="pill-name">
+        <span class="pill-dot"></span>
+        orbiX
+      </div>
+    </div>
+  </a>
+</div>
 
-    <div class="hero">
-        <h1>THINKZENITH</h1>
-        <div class="bio-box">
-            With <span class="highlight">2+ Years</span> of experience in the TON Ecosystem, I specialize in premium username acquisitions and NFT trading. 
-            <br><br>
-            Owner of <b>Orbix Portal</b>. We provide a 100% Secure Environment for your digital asset deals.
+<!-- HERO -->
+<div class="hero fade">
+  <div class="hero-eyebrow">TON Ecosystem · Digital Assets</div>
+  <h1>THINKZENITH</h1>
+  <p class="hero-sub">Orbix Portal &nbsp;·&nbsp; Secure Trading Hub</p>
+  <div class="bio-box">
+    With <span class="hl-s">2+ Years</span> of experience in the <span class="hl-t">TON Ecosystem</span>, I specialize in
+    premium <span class="hl-s">Telegram Username</span> acquisitions and <span class="hl-s">NFT trading</span>.
+    <br><br>
+    Owner of <span class="hl-b">Orbix Portal</span> — your 100% secure environment for every digital asset deal on the TON blockchain.
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar fade">
+  <div class="stat-item">
+    <div class="stat-num sn-s"><span class="count" data-target="40">0</span>+</div>
+    <div class="stat-lbl">Verified Deals</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-t"><span class="count" data-target="1000">0</span>+</div>
+    <div class="stat-lbl">TON Traded</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-b">2+</div>
+    <div class="stat-lbl">Years Active</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-g">0%</div>
+    <div class="stat-lbl">Scam Rate</div>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div class="slabel fade"><i class="fas fa-graduation-cap" style="color:var(--silver-mid)"></i> New here? Learn first</div>
+<div class="learn-grid fade">
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-cube" style="color:var(--teal)"></i> What are NFTs?</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">NFT stands for Non-Fungible Token — a unique digital item stored on a blockchain with a verifiable owner and full transaction history. No two NFTs are identical, giving them real market value as collectibles and tradeable assets.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-link" style="color:var(--teal)"></i> What is the TON Blockchain?</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">TON (The Open Network) is a fast, low-fee blockchain built alongside Telegram's infrastructure. It powers Telegram's digital economy — from in-app payments using Stars to full ownership of Telegram-native NFT assets. Everything we trade lives on TON.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-at" style="color:var(--blue)"></i> Telegram Username NFTs</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">Via Fragment.com, premium Telegram usernames and phone numbers can be minted as NFTs on TON. Once minted, they are permanently ownable and transferable. A short, desirable handle can be worth thousands of dollars on the open market.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-gift" style="color:var(--blue)"></i> Telegram Gift NFTs</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">Telegram introduced limited-edition digital gifts that users can convert into NFTs on the TON chain. Rare gifts from limited drops carry real collectible value and are actively traded worldwide in the secondary market.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-star" style="color:var(--silver)"></i> What are Telegram Stars?</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">Telegram Stars is the official in-app currency of Telegram. Purchased with real money, Stars are used to send digital gifts, unlock features, and participate in the NFT economy inside Telegram.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-shield-alt" style="color:var(--green)"></i> Why use Escrow?</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">In P2P trading, either party can vanish after receiving funds or the asset. An escrow holds both sides simultaneously, verifies everything, then releases both at once. Neither buyer nor seller can lose out. This is how we operate on every deal.</div>
+  </div>
+</div>
+
+<!-- LINKS -->
+<div class="slabel fade"><i class="fas fa-th" style="color:var(--silver-mid)"></i> Quick Access</div>
+<div class="links-grid fade">
+
+  <a href="https://t.me/Orbixmrkt" target="_blank" class="btn btn-orbix">
+    <div class="btn-inner">
+      <div class="btn-left">
+        <div class="btn-icon-wrap"><i class="fas fa-globe"></i></div>
+        <div class="btn-label">
+          <span class="btn-title">Orbix Portal</span>
+          <span class="btn-hint">Browse the live market →</span>
         </div>
+      </div>
+      <div class="btn-arrow"><i class="fas fa-chevron-right"></i></div>
     </div>
+  </a>
 
-    <div class="grid">
-        <a href="https://t.me/Orbixmrkt" class="btn">
-            <span><i class="fas fa-globe"></i> Orbix Portal (Main)</span>
-            <i class="fas fa-chevron-right"></i>
-        </a>
-        <a href="https://t.me/orbiXTrustline" class="btn">
-            <span><i class="fas fa-star"></i> Verified Vouches</span>
-            <i class="fas fa-chevron-right"></i>
-        </a>
-        <a href="https://t.me/glory_worldd" class="btn">
-            <span><i class="fas fa-chart-line"></i> Buy / Sell Market</span>
-            <i class="fas fa-chevron-right"></i>
-        </a>
-        <a href="https://t.me/GloryXworld" class="btn escrow-btn">
-            <span><i class="fas fa-shield-alt"></i> SECURE ESCROW</span>
-            <i class="fas fa-lock"></i>
-        </a>
+  <a href="https://t.me/orbiXTrustline" target="_blank" class="btn btn-vouch">
+    <div class="btn-inner">
+      <div class="btn-left">
+        <div class="btn-icon-wrap"><i class="fas fa-certificate"></i></div>
+        <div class="btn-label">
+          <span class="btn-title">Verified Vouches</span>
+          <span class="btn-hint">See all completed deals →</span>
+        </div>
+      </div>
+      <div class="btn-arrow"><i class="fas fa-chevron-right"></i></div>
     </div>
+  </a>
 
-    <div class="faq-section">
-        <div class="faq-title"><i class="fas fa-question-circle"></i> Frequently Asked Questions</div>
-        
-        <details>
-            <summary>What are Telegram Usernames?</summary>
-            <div class="answer">Premium digital assets minted as NFTs on the TON Blockchain. They can be bought, sold, and owned permanently in your wallet.</div>
-        </details>
-        
-        <details>
-            <summary>What are NFTs?</summary>
-            <div class="answer">Unique digital items. We deal with Telegram Numbers, Usernames, and art that have real market value.</div>
-        </details>
-        
-        <details>
-            <summary>How is trading done safely?</summary>
-            <div class="answer">Via "Middleman" or Escrow. Buyer sends funds to us, seller transfers item to us. We verify & swap. 0% scams.</div>
-        </details>
-        
-        <details>
-            <summary>What are your fees?</summary>
-            <div class="answer">Our fees are standard for the ecosystem. Check the "Fees" pinned message in our Escrow group or DM @im_techy.</div>
-        </details>
+  <a href="https://t.me/im_techy" target="_blank" class="btn btn-deal">
+    <div class="btn-inner">
+      <div class="btn-left">
+        <div class="btn-icon-wrap"><i class="fas fa-lock"></i></div>
+        <div class="btn-label">
+          <span class="btn-title">Start a Secure Deal</span>
+          <span class="btn-hint">DM AlgoSphere on Telegram →</span>
+        </div>
+      </div>
+      <div class="btn-arrow"><i class="fas fa-chevron-right"></i></div>
     </div>
-    
-    <div class="footer">
-        © 2024 THINKZENITH.TON • SECURE PORTAL
-    </div>
+  </a>
 
+  <a href="https://t.me/thinkprime" target="_blank" class="btn btn-diary">
+    <div class="btn-inner">
+      <div class="btn-left">
+        <div class="btn-icon-wrap"><i class="fas fa-feather-alt"></i></div>
+        <div class="btn-label">
+          <span class="btn-title">Zenith Diaries</span>
+          <span class="btn-hint">Personal channel — thoughts & updates →</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="new-tag">New</span>
+        <div class="btn-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="slabel fade"><i class="fas fa-list-ol" style="color:var(--silver-mid)"></i> How it works</div>
+<div class="steps fade">
+  <div class="step s1">
+    <div class="step-badge">1</div>
+    <div>
+      <div class="step-title">Reach Out & Agree on Terms</div>
+      <p class="step-text">DM AlgoSphere on Telegram. Share the asset — username, gift NFT, or collectible. We agree on price and conditions before anything moves.</p>
+    </div>
+  </div>
+  <div class="step s2">
+    <div class="step-badge">2</div>
+    <div>
+      <div class="step-title">Escrow Initiated</div>
+      <p class="step-text">Buyer sends funds to our escrow. Seller transfers the asset to our wallet. Both are held securely — neither side has completed yet. This is your safety net.</p>
+    </div>
+  </div>
+  <div class="step s3">
+    <div class="step-badge">3</div>
+    <div>
+      <div class="step-title">Verification</div>
+      <p class="step-text">We verify the asset is authentic and funds are cleared. Any discrepancy is raised before proceeding. Total transparency for both parties.</p>
+    </div>
+  </div>
+  <div class="step s4">
+    <div class="step-badge">4</div>
+    <div>
+      <div class="step-title">Swap & Done</div>
+      <p class="step-text">Asset to buyer. Funds to seller. Both happen simultaneously. Deal logged in our public vouch channel as a permanent verified record.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="slabel fade"><i class="fas fa-question-circle" style="color:var(--silver-mid)"></i> FAQ</div>
+<div class="faq-wrap fade">
+  <details>
+    <summary>What are Telegram Usernames?</summary>
+    <div class="answer">Premium digital assets minted as NFTs on TON via Fragment.com. Permanently ownable and transferable in your TON wallet. Short, desirable usernames carry significant market value.</div>
+  </details>
+  <details>
+    <summary>How is trading done safely?</summary>
+    <div class="answer">Via our escrow service. Buyer sends funds to us, seller transfers the asset. We verify and swap simultaneously — zero risk for either party. 40+ deals completed, 0% scam rate.</div>
+  </details>
+  <details>
+    <summary>What are your fees?</summary>
+    <div class="answer">Fees vary by deal size and are standard for the ecosystem. Check the pinned "Fees" message in Orbix Portal or DM AlgoSphere directly for your specific trade.</div>
+  </details>
+  <details>
+    <summary>What do I need to start?</summary>
+    <div class="answer">A Telegram account, a TON wallet (Tonkeeper recommended), and TON for purchases. We'll guide you through every step — even if it's your very first time.</div>
+  </details>
+  <details>
+    <summary>How long does a deal take?</summary>
+    <div class="answer">Most deals complete within 30–60 minutes once both parties are ready. We keep both sides updated throughout the entire process.</div>
+  </details>
+</div>
+
+<!-- FOOTER -->
+<div class="footer fade">
+  © 2026 THINKZENITH.IN &nbsp;·&nbsp; ORBIX PORTAL &nbsp;·&nbsp; BUILT ON TON
+</div>
+
+</div>
+
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 45);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  fades.forEach(el => io.observe(el));
+
+  const counts = document.querySelectorAll('.count');
+  const co = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      let curr = 0;
+      const step = target / (1400 / 16);
+      const t = setInterval(() => {
+        curr += step;
+        if (curr >= target) { el.textContent = target; clearInterval(t); }
+        else el.textContent = Math.floor(curr);
+      }, 16);
+      co.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counts.forEach(el => co.observe(el));
+
+  function toggleLearn(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.learn-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+</script>
 </body>
 </html>
