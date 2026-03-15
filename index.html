@@ -129,10 +129,11 @@ body {
 /* Left colored Telegram icon block */
 .pill-icon-block {
   background: rgba(91,155,213,0.18);
-  padding: 11px 13px;
+  padding: 0 14px;
   display: flex; align-items: center; justify-content: center;
   border-right: 1px solid rgba(91,155,213,0.25);
   transition: background 0.3s;
+  align-self: stretch;
 }
 .contact-pill:hover .pill-icon-block { background: rgba(91,155,213,0.28); }
 .pill-icon-block i { color: var(--blue); font-size: 0.95rem; }
@@ -153,7 +154,7 @@ body {
 @keyframes pulse { 0%,100%{opacity:1;transform:scale(1);} 50%{opacity:0.45;transform:scale(0.7);} }
 
 /* ── HERO ── */
-.hero { text-align: center; max-width: 560px; margin-bottom: 28px; }
+.hero { text-align: center; width: 100%; max-width: 560px; margin-bottom: 28px; overflow: hidden; }
 .hero-eyebrow {
   font-family: 'Inter', sans-serif; font-weight: 500;
   font-size: 0.62rem; letter-spacing: 0.28em; text-transform: uppercase;
@@ -163,12 +164,13 @@ body {
 .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--teal); opacity: 0.5; }
 h1 {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.85rem, 7vw, 3.8rem);
+  font-size: clamp(1.5rem, 8vw, 3.8rem);
   font-weight: 800; color: var(--cream);
-  letter-spacing: clamp(0.02em, 0.8vw, 0.07em);
+  letter-spacing: 0.03em;
   margin-bottom: 6px; line-height: 1.1;
   text-shadow: 0 0 60px rgba(200,216,232,0.12);
-  max-width: 100%; overflow: hidden;
+  width: 100%;
+  word-break: break-word;
 }
 .hero-sub {
   font-family: 'Inter', sans-serif; font-weight: 500;
@@ -386,7 +388,7 @@ details[open] summary::after { transform: rotate(180deg); color: var(--silver); 
 }
 
 @media (max-width: 520px) {
-  h1 { font-size: clamp(1.7rem, 11vw, 2.5rem); letter-spacing: 0.02em; }
+  h1 { font-size: clamp(1.5rem, 8vw, 2.4rem); letter-spacing: 0.02em; }
   .contact-bar { gap: 8px; width: 100%; }
   .contact-pill { flex: 1; min-width: 130px; }
   .stats-bar { flex-wrap: wrap; }
@@ -405,6 +407,12 @@ details[open] summary::after { transform: rotate(180deg); color: var(--silver); 
   .hero-eyebrow { font-size: 0.56rem; letter-spacing: 0.18em; }
   .hero-eyebrow::before, .hero-eyebrow::after { width: 14px; }
   .slabel { font-size: 0.56rem; }
+}
+
+@media (max-width: 380px) {
+  h1 { font-size: clamp(1.3rem, 7.5vw, 2rem); letter-spacing: 0.01em; }
+  .pill-name { font-size: 0.85rem; }
+  .btn-hint { display: none; }
 }
 </style>
 </head>
