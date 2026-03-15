@@ -164,15 +164,16 @@ body {
 .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--teal); opacity: 0.5; }
 h1 {
   font-family: 'Syne', sans-serif;
-  font-size: clamp(1.2rem, 6.8vw, 3.8rem);
+  font-size: clamp(1.1rem, 6.2vw, 3.8rem);
   font-weight: 800; color: var(--cream);
-  letter-spacing: 0.04em;
+  letter-spacing: 0.03em;
   margin-bottom: 6px; line-height: 1.1;
   text-shadow: 0 0 60px rgba(200,216,232,0.12);
   width: 100%;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  overflow: visible;
+  /* Scales font to always fit container width */
+  display: block;
 }
 .hero-sub {
   font-family: 'Inter', sans-serif; font-weight: 500;
@@ -434,4 +435,330 @@ details[open] summary::after { transform: rotate(180deg); color: var(--silver); 
     <circle cx="100" cy="100" r="72" stroke="#4ecdc4" stroke-width="0.6" opacity="0.3"/>
     <path d="M40 100 L160 55 L120 155 L95 118 L75 130 Z" fill="rgba(78,205,196,0.18)" stroke="#4ecdc4" stroke-width="1.5" stroke-linejoin="round"/>
     <path d="M95 118 L160 55" stroke="#4ecdc4" stroke-width="1" opacity="0.5"/>
-    <path d="M75 130 L82 
+    <path d="M75 130 L82 105 L95 118 Z" fill="rgba(78,205,196,0.3)"/>
+  </svg>
+  <svg class="bg-ton2" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M100 10 L190 55 L190 145 L100 190 L10 145 L10 55 Z" stroke="#5b9bd5" stroke-width="2" fill="rgba(91,155,213,0.04)"/>
+    <path d="M100 10 L100 190 M10 55 L190 145 M190 55 L10 145" stroke="#5b9bd5" stroke-width="0.8" opacity="0.3"/>
+    <path d="M100 10 L130 60 L100 50 L70 60 Z" fill="rgba(91,155,213,0.15)"/>
+    <path d="M70 60 L100 50 L130 60 L100 190 Z" fill="rgba(91,155,213,0.06)"/>
+  </svg>
+</div>
+<div class="quantum-grid"></div>
+<div class="noise"></div>
+
+<div class="content-wrap">
+
+<!-- TICKER -->
+<div class="ticker-wrap fade">
+  <div class="ticker">
+    <span class="ticker-item">100% Secure Escrow</span>
+    <span class="ticker-item">TON Blockchain Verified</span>
+    <span class="ticker-item">Telegram Username NFTs</span>
+    <span class="ticker-item">1000+ TON Traded</span>
+    <span class="ticker-item">40+ Verified Deals</span>
+    <span class="ticker-item">2+ Years Experience</span>
+    <span class="ticker-item">Zero Scams</span>
+    <span class="ticker-item">Fragment Marketplace</span>
+    <span class="ticker-item">Orbix Portal</span>
+    <span class="ticker-item">100% Secure Escrow</span>
+    <span class="ticker-item">TON Blockchain Verified</span>
+    <span class="ticker-item">Telegram Username NFTs</span>
+    <span class="ticker-item">1000+ TON Traded</span>
+    <span class="ticker-item">40+ Verified Deals</span>
+    <span class="ticker-item">2+ Years Experience</span>
+    <span class="ticker-item">Zero Scams</span>
+    <span class="ticker-item">Fragment Marketplace</span>
+    <span class="ticker-item">Orbix Portal</span>
+  </div>
+</div>
+
+<!-- CONTACT BAR -->
+<div class="contact-bar fade">
+  <a href="https://t.me/im_techy" target="_blank" class="contact-pill">
+    <div class="pill-icon-block">
+      <i class="fab fa-telegram"></i>
+    </div>
+    <div class="pill-text">
+      <div class="pill-label">Main Contact</div>
+      <div class="pill-name">
+        <span class="pill-dot"></span>
+        AlgoSphere
+      </div>
+    </div>
+  </a>
+  <a href="https://t.me/im_orbix" target="_blank" class="contact-pill">
+    <div class="pill-icon-block">
+      <i class="fab fa-telegram"></i>
+    </div>
+    <div class="pill-text">
+      <div class="pill-label">Support</div>
+      <div class="pill-name">
+        <span class="pill-dot"></span>
+        orbiX
+      </div>
+    </div>
+  </a>
+</div>
+
+<!-- HERO -->
+<div class="hero fade">
+  <div class="hero-eyebrow">TON Ecosystem · Digital Assets</div>
+  <h1>THINKZENITH</h1>
+  <p class="hero-sub">Orbix Portal &nbsp;·&nbsp; Secure Trading Hub</p>
+  <div class="bio-box">
+    With <span class="hl-s">2+ Years</span> of experience in the <span class="hl-t">TON Ecosystem</span>, I specialize in
+    premium <span class="hl-s">Telegram Username</span> acquisitions and <span class="hl-s">NFT trading</span>.
+    <br><br>
+    Owner of <span class="hl-b">Orbix Portal</span> — your 100% secure environment for every digital asset deal on the TON blockchain.
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar fade">
+  <div class="stat-item">
+    <div class="stat-num sn-s"><span class="count" data-target="40">0</span>+</div>
+    <div class="stat-lbl">Verified Deals</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-t"><span class="count" data-target="1000">0</span>+</div>
+    <div class="stat-lbl">TON Traded</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-b">2+</div>
+    <div class="stat-lbl">Years Active</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num sn-g">0%</div>
+    <div class="stat-lbl">Scam Rate</div>
+  </div>
+</div>
+
+<!-- LEARN -->
+<div class="slabel fade"><i class="fas fa-graduation-cap" style="color:var(--silver-mid)"></i> New here? Learn first</div>
+<div class="learn-grid fade">
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-cube" style="color:var(--teal)"></i> What are NFTs?</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">NFT stands for Non-Fungible Token — a unique digital item stored on a blockchain with a verifiable owner and full transaction history. No two NFTs are identical, giving them real market value as collectibles and tradeable assets.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-link" style="color:var(--teal)"></i> What is the TON Blockchain?</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">TON (The Open Network) is a fast, low-fee blockchain built alongside Telegram's infrastructure. It powers Telegram's digital economy — from in-app payments using Stars to full ownership of Telegram-native NFT assets. Everything we trade lives on TON.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-at" style="color:var(--blue)"></i> Telegram Username NFTs</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">Via Fragment.com, premium Telegram usernames and phone numbers can be minted as NFTs on TON. Once minted, they are permanently ownable and transferable. A short, desirable handle can be worth thousands of dollars on the open market.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-gift" style="color:var(--blue)"></i> Telegram Gift NFTs</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">Telegram introduced limited-edition digital gifts that users can convert into NFTs on the TON chain. Rare gifts from limited drops carry real collectible value and are actively traded worldwide in the secondary market.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-star" style="color:var(--silver)"></i> What are Telegram Stars?</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">Telegram Stars is the official in-app currency of Telegram. Purchased with real money, Stars are used to send digital gifts, unlock features, and participate in the NFT economy inside Telegram.</div>
+  </div>
+  <div class="learn-card" onclick="toggleLearn(this)">
+    <div class="lc-header">
+      <div class="lc-title"><i class="fas fa-shield-alt" style="color:var(--green)"></i> Why use Escrow?</div>
+      <i class="fas fa-plus lc-toggle"></i>
+    </div>
+    <div class="lc-body">In P2P trading, either party can vanish after receiving funds or the asset. An escrow holds both sides simultaneously, verifies everything, then releases both at once. Neither buyer nor seller can lose out. This is how we operate on every deal.</div>
+  </div>
+</div>
+
+<!-- LINKS -->
+<div class="sec-divider"></div>
+<div class="slabel fade"><i class="fas fa-th" style="color:var(--silver-mid)"></i> Quick Access</div>
+<div class="links-grid fade">
+
+  <a href="https://t.me/Orbixmrkt" target="_blank" class="btn btn-orbix">
+    <div class="btn-inner">
+      <div class="btn-left">
+        <div class="btn-icon-wrap"><i class="fas fa-globe"></i></div>
+        <div class="btn-label">
+          <span class="btn-title">Orbix Portal</span>
+          <span class="btn-hint">Browse the live market →</span>
+        </div>
+      </div>
+      <div class="btn-arrow"><i class="fas fa-chevron-right"></i></div>
+    </div>
+  </a>
+
+  <a href="https://t.me/orbiXTrustline" target="_blank" class="btn btn-vouch">
+    <div class="btn-inner">
+      <div class="btn-left">
+        <div class="btn-icon-wrap"><i class="fas fa-certificate"></i></div>
+        <div class="btn-label">
+          <span class="btn-title">Verified Vouches</span>
+          <span class="btn-hint">See all completed deals →</span>
+        </div>
+      </div>
+      <div class="btn-arrow"><i class="fas fa-chevron-right"></i></div>
+    </div>
+  </a>
+
+  <a href="https://t.me/im_techy" target="_blank" class="btn btn-deal">
+    <div class="btn-inner">
+      <div class="btn-left">
+        <div class="btn-icon-wrap"><i class="fas fa-lock"></i></div>
+        <div class="btn-label">
+          <span class="btn-title">Start a Secure Deal</span>
+          <span class="btn-hint">DM AlgoSphere on Telegram →</span>
+        </div>
+      </div>
+      <div class="btn-arrow"><i class="fas fa-chevron-right"></i></div>
+    </div>
+  </a>
+
+  <a href="https://t.me/thinkprime" target="_blank" class="btn btn-diary">
+    <div class="btn-inner">
+      <div class="btn-left">
+        <div class="btn-icon-wrap"><i class="fas fa-feather-alt"></i></div>
+        <div class="btn-label">
+          <span class="btn-title">Zenith Diaries</span>
+          <span class="btn-hint">Personal channel — thoughts & updates →</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:8px;">
+        <span class="new-tag">New</span>
+        <div class="btn-arrow"><i class="fas fa-chevron-right"></i></div>
+      </div>
+    </div>
+  </a>
+
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="sec-divider"></div>
+<div class="slabel fade"><i class="fas fa-list-ol" style="color:var(--silver-mid)"></i> How it works</div>
+<div class="steps fade">
+  <div class="step s1">
+    <div class="step-badge">1</div>
+    <div>
+      <div class="step-title">Reach Out & Agree on Terms</div>
+      <p class="step-text">DM AlgoSphere on Telegram. Share the asset — username, gift NFT, or collectible. We agree on price and conditions before anything moves.</p>
+    </div>
+  </div>
+  <div class="step s2">
+    <div class="step-badge">2</div>
+    <div>
+      <div class="step-title">Escrow Initiated</div>
+      <p class="step-text">Buyer sends funds to our escrow. Seller transfers the asset to our wallet. Both are held securely — neither side has completed yet. This is your safety net.</p>
+    </div>
+  </div>
+  <div class="step s3">
+    <div class="step-badge">3</div>
+    <div>
+      <div class="step-title">Verification</div>
+      <p class="step-text">We verify the asset is authentic and funds are cleared. Any discrepancy is raised before proceeding. Total transparency for both parties.</p>
+    </div>
+  </div>
+  <div class="step s4">
+    <div class="step-badge">4</div>
+    <div>
+      <div class="step-title">Swap & Done</div>
+      <p class="step-text">Asset to buyer. Funds to seller. Both happen simultaneously. Deal logged in our public vouch channel as a permanent verified record.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FAQ -->
+<div class="sec-divider"></div>
+<div class="slabel fade"><i class="fas fa-question-circle" style="color:var(--silver-mid)"></i> FAQ</div>
+<div class="faq-wrap fade">
+  <details>
+    <summary>What are Telegram Usernames?</summary>
+    <div class="answer">Premium digital assets minted as NFTs on TON via Fragment.com. Permanently ownable and transferable in your TON wallet. Short, desirable usernames carry significant market value.</div>
+  </details>
+  <details>
+    <summary>How is trading done safely?</summary>
+    <div class="answer">Via our escrow service. Buyer sends funds to us, seller transfers the asset. We verify and swap simultaneously — zero risk for either party. 40+ deals completed, 0% scam rate.</div>
+  </details>
+  <details>
+    <summary>What are your fees?</summary>
+    <div class="answer">Fees vary by deal size and are standard for the ecosystem. Check the pinned "Fees" message in Orbix Portal or DM AlgoSphere directly for your specific trade.</div>
+  </details>
+  <details>
+    <summary>What do I need to start?</summary>
+    <div class="answer">A Telegram account, a TON wallet (Tonkeeper recommended), and TON for purchases. We'll guide you through every step — even if it's your very first time.</div>
+  </details>
+  <details>
+    <summary>How long does a deal take?</summary>
+    <div class="answer">Most deals complete within 30–60 minutes once both parties are ready. We keep both sides updated throughout the entire process.</div>
+  </details>
+</div>
+
+<!-- FOOTER -->
+<div class="footer fade">
+  © 2026 THINKZENITH.IN &nbsp;·&nbsp; ORBIX PORTAL &nbsp;·&nbsp; BUILT ON TON
+</div>
+
+</div>
+
+<script>
+  const fades = document.querySelectorAll('.fade');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('visible'), i * 45);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.06 });
+  fades.forEach(el => io.observe(el));
+
+  const counts = document.querySelectorAll('.count');
+  const co = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      let curr = 0;
+      const step = target / (1400 / 16);
+      const t = setInterval(() => {
+        curr += step;
+        if (curr >= target) { el.textContent = target; clearInterval(t); }
+        else el.textContent = Math.floor(curr);
+      }, 16);
+      co.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  counts.forEach(el => co.observe(el));
+
+  function toggleLearn(card) {
+    const isOpen = card.classList.contains('open');
+    document.querySelectorAll('.learn-card').forEach(c => c.classList.remove('open'));
+    if (!isOpen) card.classList.add('open');
+  }
+
+  // FIT H1 TO SCREEN — always single line, never overflow
+  function fitH1() {
+    const h1 = document.querySelector('h1');
+    const container = h1.parentElement;
+    let size = 100; // start large
+    h1.style.fontSize = size + 'px';
+    while (h1.scrollWidth > container.clientWidth && size > 10) {
+      size -= 1;
+      h1.style.fontSize = size + 'px';
+    }
+  }
+  fitH1();
+  window.addEventListener('resize', fitH1);
+</script>
+</body>
+</html>
