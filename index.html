@@ -162,13 +162,18 @@ body {
 }
 .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 24px; height: 1px; background: var(--teal); opacity: 0.5; }
 h1 {
-  font-family: 'Syne', sans-serif; font-size: clamp(2.3rem, 9vw, 3.8rem);
-  font-weight: 800; color: var(--cream); letter-spacing: 0.07em; margin-bottom: 6px;
+  font-family: 'Syne', sans-serif;
+  font-size: clamp(1.85rem, 7vw, 3.8rem);
+  font-weight: 800; color: var(--cream);
+  letter-spacing: clamp(0.02em, 0.8vw, 0.07em);
+  margin-bottom: 6px; line-height: 1.1;
   text-shadow: 0 0 60px rgba(200,216,232,0.12);
+  max-width: 100%; overflow: hidden;
 }
 .hero-sub {
   font-family: 'Inter', sans-serif; font-weight: 500;
-  font-size: 0.72rem; color: var(--muted); letter-spacing: 0.2em;
+  font-size: 0.72rem; color: var(--muted);
+  letter-spacing: clamp(0.06em, 1vw, 0.2em);
   text-transform: uppercase; margin-bottom: 22px;
 }
 .bio-box {
@@ -176,6 +181,7 @@ h1 {
   border: 1px solid var(--border);
   font-size: 0.88rem; line-height: 1.85; position: relative;
   backdrop-filter: blur(6px);
+  text-align: left;
 }
 .bio-box::before {
   content: ''; position: absolute; top: 0; left: 12%; right: 12%; height: 1px;
@@ -372,12 +378,33 @@ details[open] summary::after { transform: rotate(180deg); color: var(--silver); 
 .fade { opacity: 0; transform: translateY(16px); transition: opacity 0.55s ease, transform 0.55s ease; }
 .fade.visible { opacity: 1; transform: translateY(0); }
 
-@media (max-width: 480px) {
-  h1 { font-size: 2rem; }
+/* ── SECTION DIVIDER ── */
+.sec-divider {
+  width: 100%; max-width: 560px; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200,216,232,0.1), transparent);
+  margin: 4px 0 20px;
+}
+
+@media (max-width: 520px) {
+  h1 { font-size: clamp(1.7rem, 11vw, 2.5rem); letter-spacing: 0.02em; }
+  .contact-bar { gap: 8px; width: 100%; }
+  .contact-pill { flex: 1; min-width: 130px; }
   .stats-bar { flex-wrap: wrap; }
   .stat-item { min-width: 50%; border-bottom: 1px solid var(--border); }
   .stat-item:nth-child(2) { border-right: none; }
-  .btn-hint { display: none; }
+  .stat-item:nth-child(3), .stat-item:nth-child(4) { border-bottom: none; }
+  .stat-num { font-size: 1.4rem; }
+  .btn-hint { font-size: 0.62rem; }
+  .btn-inner { padding: 13px 14px; }
+  .btn-icon-wrap { width: 30px; height: 30px; }
+  body { padding: 0 14px 48px; }
+  .bio-box { padding: 18px; font-size: 0.84rem; }
+  .step { padding: 16px; }
+  .answer { font-size: 0.78rem; }
+  summary { font-size: 0.82rem; padding: 14px; }
+  .hero-eyebrow { font-size: 0.56rem; letter-spacing: 0.18em; }
+  .hero-eyebrow::before, .hero-eyebrow::after { width: 14px; }
+  .slabel { font-size: 0.56rem; }
 }
 </style>
 </head>
@@ -544,6 +571,7 @@ details[open] summary::after { transform: rotate(180deg); color: var(--silver); 
 </div>
 
 <!-- LINKS -->
+<div class="sec-divider"></div>
 <div class="slabel fade"><i class="fas fa-th" style="color:var(--silver-mid)"></i> Quick Access</div>
 <div class="links-grid fade">
 
@@ -605,6 +633,7 @@ details[open] summary::after { transform: rotate(180deg); color: var(--silver); 
 </div>
 
 <!-- HOW IT WORKS -->
+<div class="sec-divider"></div>
 <div class="slabel fade"><i class="fas fa-list-ol" style="color:var(--silver-mid)"></i> How it works</div>
 <div class="steps fade">
   <div class="step s1">
@@ -638,6 +667,7 @@ details[open] summary::after { transform: rotate(180deg); color: var(--silver); 
 </div>
 
 <!-- FAQ -->
+<div class="sec-divider"></div>
 <div class="slabel fade"><i class="fas fa-question-circle" style="color:var(--silver-mid)"></i> FAQ</div>
 <div class="faq-wrap fade">
   <details>
