@@ -108,5 +108,373 @@ body {
   transition: all 0.25s ease;
 }
 .dm-btn:hover {
-  background: rgba(91,1
-                   
+  background: rgba(91,155,213,0.22); border-color: var(--blue);
+  transform: translateY(-2px); box-shadow: 0 4px 18px rgba(91,155,213,0.2);
+}
+
+/* ── HERO / PROFILE ── */
+.hero { width: 100%; text-align: center; margin-bottom: 24px; }
+.avatar {
+  width: 76px; height: 76px; border-radius: 50%; margin: 0 auto 16px;
+  background: linear-gradient(135deg, rgba(78,205,196,0.2), rgba(91,155,213,0.2));
+  border: 1px solid rgba(200,216,232,0.25);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--cream);
+  box-shadow: 0 0 30px rgba(78,205,196,0.12);
+}
+h1 {
+  font-family: 'Syne', sans-serif; font-weight: 800;
+  color: var(--cream); font-size: clamp(2rem, 8vw, 2.8rem);
+  letter-spacing: 0.02em; line-height: 1.1; margin-bottom: 8px;
+}
+.hero-sub {
+  font-size: 0.72rem; font-weight: 500; color: var(--teal);
+  letter-spacing: 0.22em; text-transform: uppercase; margin-bottom: 20px;
+}
+
+.bio-card {
+  width: 100%; background: rgba(15,19,32,0.88);
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 22px; text-align: left; font-size: 0.88rem; line-height: 1.8;
+  position: relative; backdrop-filter: blur(8px);
+}
+.bio-card::before {
+  content: ''; position: absolute; top: 0; left: 15%; right: 15%; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--silver-dim), transparent);
+}
+.hl-t { color: var(--teal); font-weight: 600; }
+.hl-s { color: var(--silver-b); font-weight: 600; }
+.hl-a { color: var(--amber); font-weight: 600; }
+
+/* ── CURRENTLY STRIP ── */
+.now-grid {
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px;
+  width: 100%; margin-top: 12px;
+}
+.now-item {
+  background: rgba(15,19,32,0.8); border: 1px solid var(--border);
+  border-radius: 10px; padding: 12px 10px; text-align: center;
+}
+.now-lbl {
+  font-size: 0.58rem; text-transform: uppercase; letter-spacing: 0.14em;
+  color: var(--muted); margin-bottom: 4px;
+}
+.now-val { font-size: 0.76rem; font-weight: 600; color: var(--silver-b); }
+
+/* ── SECTION LABELS ── */
+.slabel {
+  width: 100%; font-size: 0.68rem; font-weight: 600;
+  letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--silver); margin: 26px 0 12px;
+  display: flex; align-items: center; gap: 10px;
+  padding: 7px 12px; background: rgba(200,216,232,0.04);
+  border-left: 2px solid var(--teal); border-radius: 0 6px 6px 0;
+}
+
+/* ── FEATURED CARD (BEYOND ZENITH) ── */
+.featured-card {
+  width: 100%; text-decoration: none; display: block;
+  background: linear-gradient(135deg, rgba(78,205,196,0.09), rgba(15,19,32,0.95));
+  border: 1px solid rgba(78,205,196,0.35); border-radius: 14px;
+  padding: 20px; transition: all 0.28s ease; position: relative;
+}
+.featured-card:hover {
+  border-color: var(--teal); transform: translateY(-3px);
+  box-shadow: 0 8px 28px rgba(78,205,196,0.14);
+}
+.fc-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; }
+.fc-badge {
+  font-size: 0.6rem; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--teal); background: rgba(78,205,196,0.12);
+  border: 1px solid rgba(78,205,196,0.3); padding: 3px 9px; border-radius: 99px;
+}
+.fc-title {
+  font-family: 'Syne', sans-serif; font-size: 1.35rem; font-weight: 800;
+  color: var(--cream); margin-bottom: 6px;
+}
+.fc-desc { font-size: 0.83rem; color: var(--body); line-height: 1.65; margin-bottom: 14px; }
+.fc-cta {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-size: 0.78rem; font-weight: 600; color: var(--teal);
+}
+
+/* ── PROJECT & CHANNEL CARDS ── */
+.stack { width: 100%; display: flex; flex-direction: column; gap: 10px; }
+
+.project-card {
+  width: 100%; background: rgba(15,19,32,0.9);
+  border: 1px solid rgba(245,185,113,0.28); border-radius: 12px;
+  padding: 18px; transition: border-color 0.25s;
+}
+.project-card:hover { border-color: rgba(245,185,113,0.6); }
+.pc-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.icon-box {
+  width: 38px; height: 38px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 0.95rem;
+}
+.ib-amber { background: rgba(245,185,113,0.12); color: var(--amber); border: 1px solid rgba(245,185,113,0.3); }
+.ib-purple { background: rgba(167,139,250,0.12); color: var(--purple); border: 1px solid rgba(167,139,250,0.3); }
+.ib-blue { background: rgba(91,155,213,0.12); color: var(--blue); border: 1px solid rgba(91,155,213,0.3); }
+
+.pc-title { font-size: 0.95rem; font-weight: 600; color: var(--silver-b); }
+.pc-sub { font-size: 0.74rem; color: var(--muted); }
+.pc-desc { font-size: 0.81rem; color: var(--body); line-height: 1.65; margin-bottom: 14px; }
+
+.dual-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mini-btn {
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  text-decoration: none; padding: 10px 12px; border-radius: 8px;
+  font-size: 0.78rem; font-weight: 600; transition: all 0.2s;
+}
+.mb-primary {
+  background: rgba(245,185,113,0.14); color: var(--amber);
+  border: 1px solid rgba(245,185,113,0.35);
+}
+.mb-primary:hover { background: rgba(245,185,113,0.24); }
+.mb-secondary {
+  background: rgba(200,216,232,0.06); color: var(--silver-b);
+  border: 1px solid var(--border);
+}
+.mb-secondary:hover { border-color: var(--silver-mid); background: rgba(200,216,232,0.12); }
+
+/* ── STANDARD LINK ROW ── */
+.link-row {
+  width: 100%; text-decoration: none;
+  display: flex; align-items: center; justify-content: space-between; gap: 12px;
+  background: rgba(15,19,32,0.88); border: 1px solid var(--border);
+  border-radius: 12px; padding: 15px 16px; transition: all 0.25s ease;
+}
+.link-row:hover {
+  transform: translateY(-2px); background: var(--card2);
+  border-color: rgba(200,216,232,0.28);
+}
+.lr-left { display: flex; align-items: center; gap: 13px; }
+.lr-title { font-size: 0.9rem; font-weight: 600; color: var(--silver-b); margin-bottom: 2px; }
+.lr-desc { font-size: 0.74rem; color: var(--muted); }
+.lr-arrow { color: var(--silver-dim); font-size: 0.8rem; transition: transform 0.25s, color 0.25s; }
+.link-row:hover .lr-arrow { transform: translateX(4px); color: var(--silver-b); }
+
+/* ── INTERACTIVE ENGAGEMENT BOX (BACKEND READY) ── */
+.engage-card {
+  width: 100%; background: rgba(15,19,32,0.9);
+  border: 1px solid var(--border); border-radius: 14px;
+  padding: 20px;
+}
+.engage-tabs { display: flex; gap: 8px; margin-bottom: 14px; }
+.tab-btn {
+  flex: 1; background: rgba(200,216,232,0.04); border: 1px solid var(--border);
+  color: var(--muted); padding: 8px; border-radius: 8px;
+  font-family: 'Inter', sans-serif; font-size: 0.75rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+}
+.tab-btn.active {
+  background: rgba(78,205,196,0.12); border-color: rgba(78,205,196,0.4);
+  color: var(--teal);
+}
+.engage-input {
+  width: 100%; background: rgba(6,8,13,0.75); border: 1px solid var(--border);
+  border-radius: 8px; padding: 12px; color: var(--silver-b);
+  font-family: 'Inter', sans-serif; font-size: 0.84rem; resize: vertical; min-height: 82px;
+  outline: none; margin-bottom: 10px;
+}
+.engage-input:focus { border-color: rgba(78,205,196,0.5); }
+.engage-submit {
+  width: 100%; background: var(--teal); color: #06080d;
+  border: none; border-radius: 8px; padding: 11px;
+  font-family: 'Inter', sans-serif; font-size: 0.82rem; font-weight: 700;
+  cursor: pointer; transition: opacity 0.2s;
+}
+.engage-submit:hover { opacity: 0.9; }
+.form-status {
+  margin-top: 10px; font-size: 0.76rem; color: var(--green);
+  text-align: center; display: none;
+}
+
+/* ── FOOTER ── */
+.footer {
+  width: 100%; text-align: center; margin-top: 32px; padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 0.65rem; letter-spacing: 0.14em; text-transform: uppercase;
+  color: var(--silver-dim);
+}
+
+@media (max-width: 480px) {
+  .now-grid { grid-template-columns: 1fr; }
+  .dual-actions { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div class="ambient-glow">
+  <div class="glow-1"></div>
+  <div class="glow-2"></div>
+</div>
+<div class="noise"></div>
+
+<div class="wrap">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="status-chip"><span class="dot"></span> Active on Telegram</div>
+    <a href="https://t.me/thinkprime?direct" target="_blank" rel="noopener" class="dm-btn">
+      <i class="fa-regular fa-paper-plane"></i> Message Me
+    </a>
+  </div>
+
+  <!-- HERO / PERSONAL PROFILE -->
+  <header class="hero">
+    <div class="avatar">TZ</div>
+    <h1>THINKZENITH</h1>
+    <div class="hero-sub">Thoughts • Books • Music</div>
+
+    <div class="bio-card">
+      Hey, welcome to my corner of the internet. I share <span class="hl-t">unfiltered thoughts, POVs, and motivation</span>, curate <span class="hl-a">books worth reading</span>, and archive the <span class="hl-s">songs that define different phases of my life</span>. Explore my channels below or drop a message anytime.
+    </div>
+
+    <!-- QUICK "RIGHT NOW" STRIP (Edit anytime) -->
+    <div class="now-grid">
+      <div class="now-item">
+        <div class="now-lbl">Main Hub</div>
+        <div class="now-val">Beyond Zenith</div>
+      </div>
+      <div class="now-item">
+        <div class="now-lbl">Reading</div>
+        <div class="now-val">Zenith Reads</div>
+      </div>
+      <div class="now-item">
+        <div class="now-lbl">Listening</div>
+        <div class="now-val">ZenTune Vault</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 1. MAIN CHANNEL -->
+  <div class="slabel"><i class="fa-solid fa-compass"></i> Main Channel</div>
+  <a href="https://t.me/thinkprime" target="_blank" rel="noopener" class="featured-card">
+    <div class="fc-top">
+      <span class="fc-badge">Primary Space</span>
+      <i class="fa-solid fa-arrow-up-right-from-square" style="color:var(--teal);font-size:0.8rem;"></i>
+    </div>
+    <div class="fc-title">Beyond Zenith</div>
+    <div class="fc-desc">My public personal channel — raw thoughts, personal POVs, late-night reflections, motivation, and everything in between.</div>
+    <div class="fc-cta">Join @thinkprime <i class="fa-solid fa-arrow-right"></i></div>
+  </a>
+
+  <!-- 2. BOOKS PROJECT -->
+  <div class="slabel"><i class="fa-solid fa-book-open"></i> Reading Project</div>
+  <div class="project-card">
+    <div class="pc-head">
+      <div class="icon-box ib-amber"><i class="fa-solid fa-book"></i></div>
+      <div>
+        <div class="pc-title">Zenith Reads</div>
+        <div class="pc-sub">Curated book recommendations & downloads</div>
+      </div>
+    </div>
+    <div class="pc-desc">My side project where I recommend books that actually leave an impact—complete with direct download links and an automated book finder bot.</div>
+    <div class="dual-actions">
+      <a href="https://t.me/zenithread" target="_blank" rel="noopener" class="mini-btn mb-primary">
+        <i class="fa-brands fa-telegram"></i> Open Channel
+      </a>
+      <a href="https://t.me/ZenithbooksBot" target="_blank" rel="noopener" class="mini-btn mb-secondary">
+        <i class="fa-solid fa-robot"></i> @ZenithbooksBot
+      </a>
+    </div>
+  </div>
+
+  <!-- 3. MUSIC & COMMUNITY -->
+  <div class="slabel"><i class="fa-solid fa-layer-group"></i> Music & Community</div>
+  <div class="stack">
+    <a href="https://t.me/zentune" target="_blank" rel="noopener" class="link-row">
+      <div class="lr-left">
+        <div class="icon-box ib-purple"><i class="fa-solid fa-headphones"></i></div>
+        <div>
+          <div class="lr-title">ZenTune</div>
+          <div class="lr-desc">My personal music vault — songs I loved and saved as a time capsule</div>
+        </div>
+      </div>
+      <i class="fa-solid fa-chevron-right lr-arrow"></i>
+    </a>
+
+    <a href="https://t.me/zenreads" target="_blank" rel="noopener" class="link-row">
+      <div class="lr-left">
+        <div class="icon-box ib-blue"><i class="fa-solid fa-comments"></i></div>
+        <div>
+          <div class="lr-title">ZenReads Community GC</div>
+          <div class="lr-desc">Hang out, discuss books, thoughts, and connect with others</div>
+        </div>
+      </div>
+      <i class="fa-solid fa-chevron-right lr-arrow"></i>
+    </a>
+  </div>
+
+  <!-- 4. INTERACTIVE ENGAGEMENT (BACKEND READY) -->
+  <div class="slabel"><i class="fa-solid fa-bolt"></i> Drop a Note</div>
+  <div class="engage-card">
+    <div class="engage-tabs">
+      <button type="button" class="tab-btn active" onclick="setMode('thought', this)">Anonymous Thought</button>
+      <button type="button" class="tab-btn" onclick="setMode('book', this)">Request a Book</button>
+    </div>
+    <form id="engageForm" onsubmit="handleSubmit(event)">
+      <textarea id="engageInput" class="engage-input" placeholder="Send an anonymous thought, question, or POV for Beyond Zenith..." required></textarea>
+      <button type="submit" class="engage-submit" id="submitBtn">Send Anonymously</button>
+      <div id="formStatus" class="form-status"></div>
+    </form>
+  </div>
+
+  <footer class="footer">
+    © 2026 THINKZENITH • BUILT FOR BEYOND ZENITH
+  </footer>
+
+</div>
+
+<script>
+// Optional: Paste a Cloudflare Worker URL or Formspree endpoint here to receive submissions in Telegram/Email
+const WEBHOOK_URL = ""; 
+
+let currentMode = "thought";
+
+function setMode(mode, btn) {
+  currentMode = mode;
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const input = document.getElementById('engageInput');
+  const submit = document.getElementById('submitBtn');
+  if (mode === 'thought') {
+    input.placeholder = "Send an anonymous thought, question, or POV for Beyond Zenith...";
+    submit.textContent = "Send Anonymously";
+  } else {
+    input.placeholder = "Enter the book title & author you want added to Zenith Reads...";
+    submit.textContent = "Request Book";
+  }
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+  const text = document.getElementById('engageInput').value.trim();
+  const status = document.getElementById('formStatus');
+  if (!text) return;
+
+  if (WEBHOOK_URL) {
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ type: currentMode, message: text })
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
+  status.textContent = currentMode === "thought"
+    ? "Sent! Thanks for dropping a thought."
+    : "Book request received! Keep an eye on Zenith Reads.";
+  status.style.display = "block";
+  document.getElementById('engageInput').value = "";
+  setTimeout(() => { status.style.display = "none"; }, 4000);
+}
+</script>
+
+</body>
+</html>
